@@ -1,2 +1,1 @@
-rootProject.name = "integration3_project"
-
+rootProject.name = "Integration3"
