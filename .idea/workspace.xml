@@ -5,25 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55291e45-4673-408c-b0dd-f9917fd34d6a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/projectKDG/Integration3Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/projectKDG/domain/Motion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/projectKDG/repository/MotionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Alert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/domain/Alert.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/AlertMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/domain/AlertMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Motion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/NotificationPreference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/domain/NotificationPreference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Sensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/domain/Sensor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/SensorType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/domain/SensorType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Temperature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/domain/Temperature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/integration3/Integration3Application.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/controller/MotionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/controller/MotionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/domain/Motion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/domain/Motion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,8 +73,8 @@
 }</component>
   <component name="GitLabMergeRequestsSettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;first&quot;: &quot;https://gitlab.com/kdg-ti/integration-2.1/24-25/team-7/Kitchen-Danger_Guard.git&quot;,
-    &quot;second&quot;: &quot;b863288d-cfdf-47d8-abe2-fc6d1a3521e3&quot;
+    &quot;first&quot;: &quot;git@gitlab.com:kdg-ti/integration-2.1/24-25/team-7/Kitchen-Danger_Guard.git&quot;,
+    &quot;second&quot;: &quot;2c623448-6869-48c0-8008-cb93c10f22c9&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -142,7 +126,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="HTTP Request.generated-requests | #1">
+  <component name="RunManager" selected="Spring Boot.Integration3Application">
     <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="#1" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -177,8 +161,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
       </set>
     </attachedChunks>
   </component>
@@ -197,6 +181,8 @@
       <workItem from="1729675046925" duration="5288000" />
       <workItem from="1729680376569" duration="1955000" />
       <workItem from="1729682661381" duration="16846000" />
+      <workItem from="1729706703606" duration="368000" />
+      <workItem from="1729707121511" duration="1482000" />
     </task>
     <servers />
   </component>

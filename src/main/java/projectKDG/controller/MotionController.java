@@ -25,9 +25,18 @@ public class MotionController {
         return motionService.getMotions() ;
     }
 
-    @PostMapping
-    public void addMotion(@RequestBody Motion motion) {
-         motionService.addNewMotion(motion);
+//    @PostMapping
+//    public void addMotion(@RequestBody Motion motion) {
+//         motionService.addNewMotion(motion);
+//    }
+
+    @PostMapping("/motion")
+    public String receiveMotionData(@RequestBody Motion motion) {
+        // Print the received boolean motion status
+        System.out.println("Received motion data: " + motion.getMotion_status());
+
+        // Return a response back to Arduino
+        return "Data received: " + (motion.getMotion_status() ? "Motion detected" : "No motion");
     }
 
 }
