@@ -1,4 +1,4 @@
-package domain;
+package projectKDG.domain;
 
 import java.time.LocalDate;
 

@@ -22,6 +22,14 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    implementation ("jakarta.persistence:jakarta.persistence-api:3.1.0")
+    implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation ("org.springframework.boot:spring-boot-starter-web")
+    implementation ("org.postgresql:postgresql:42.5.4")
+//    implementation ("javax.persistence:javax.persistence-api:2.2") // JPA API dependency
+
+
+
 }
 
 tasks.withType<Test> {

@@ -1,4 +1,4 @@
-package domain;
+package projectKDG.domain;
 
 public class User {
     private int userID;
