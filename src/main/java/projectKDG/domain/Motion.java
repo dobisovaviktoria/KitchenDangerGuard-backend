@@ -8,7 +8,6 @@
     @Entity
     @Table(name = "motion_data")
     public class Motion {
-        private boolean motion_status;
 
         @Id
         @SequenceGenerator(
@@ -25,10 +24,11 @@
                 updatable = false
         )
         private Integer motionSensorId;
+
         @Column(
                 name = "motion_sensor_status")
-
         private boolean motionSensorStatus;
+
         @Column(
                 name = "motion_timestamp"
         )
@@ -46,13 +46,12 @@
             return motionSensorId;
         }
 
-
-        public boolean getMotion_status() {
-            return motion_status;
+        public boolean isMotionSensorStatus() {
+            return motionSensorStatus;
         }
 
-        public void setMotion_status(boolean motion_status) {
-            this.motion_status = motion_status;
+        public void setMotionSensorStatus(boolean motionSensorStatus) {
+            this.motionSensorStatus = motionSensorStatus;
         }
 
         public LocalDateTime getMotionTimestamp() {

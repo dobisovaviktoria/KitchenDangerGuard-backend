@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import projectKDG.domain.Motion;
 import projectKDG.service.MotionService;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -33,10 +31,10 @@ public class MotionController {
     @PostMapping("/motion")
     public String receiveMotionData(@RequestBody Motion motion) {
         // Print the received boolean motion status
-        System.out.println("Received motion data: " + motion.getMotion_status());
+        System.out.println("Received motion data: " + motion.isMotionSensorStatus());
 
         // Return a response back to Arduino
-        return "Data received: " + (motion.getMotion_status() ? "Motion detected" : "No motion");
+        return "Data received: " + (motion.isMotionSensorStatus() ? "Motion detected" : "No motion");
     }
 
 }

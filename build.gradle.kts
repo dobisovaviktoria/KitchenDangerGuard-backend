@@ -9,7 +9,7 @@ version = "0.0.1-SNAPSHOT"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
@@ -26,10 +26,7 @@ dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation ("org.springframework.boot:spring-boot-starter-web")
     implementation ("org.postgresql:postgresql:42.5.4")
-//    implementation ("javax.persistence:javax.persistence-api:2.2") // JPA API dependency
-
-
-
+    implementation("org.springframework.integration:spring-integration-mqtt")
 }
 
 tasks.withType<Test> {

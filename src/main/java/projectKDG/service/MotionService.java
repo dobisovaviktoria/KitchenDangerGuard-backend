@@ -25,7 +25,7 @@ private final MotionRepository motionRepository;
     }
 
     public void addNewMotion(Motion motion) {
-       motionRepository.findMotionById(motion.getMotionSensorId());
+       motionRepository.findMotionByMotionSensorId(motion.getMotionSensorId());
         System.out.println(motion);
     }
 }

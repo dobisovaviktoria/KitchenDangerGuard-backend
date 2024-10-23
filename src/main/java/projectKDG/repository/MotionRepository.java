@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface MotionRepository
         extends JpaRepository<Motion, Integer> {
 
-    Optional<Motion> findMotionById(int id);
+    Optional<Motion> findMotionByMotionSensorId(Integer motionSensorId);
 
 }
