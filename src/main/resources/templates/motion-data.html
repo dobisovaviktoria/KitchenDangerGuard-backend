@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Motion Data</title>
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+  <h1 class="my-4">Motion Data</h1>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Motion Sensor ID</th>
+      <th>Status</th>
+      <th>Timestamp</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="motion : ${motions}">
+      <td th:text="${motion.motionSensorId}"></td>
+      <td th:text="${motion.motionSensorStatus ? 'Detected' : 'No Motion'}"></td>
+      <td th:text="${motion.motionTimestamp}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

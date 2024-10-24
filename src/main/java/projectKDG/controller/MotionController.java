@@ -3,6 +3,8 @@ package projectKDG.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import projectKDG.controller.model.MotionDTO;
 import projectKDG.domain.Motion;
@@ -11,7 +13,7 @@ import projectKDG.service.MotionService;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping(path = "motion")
 public class MotionController {
 
@@ -24,12 +26,14 @@ public class MotionController {
 
     // GET endpoint to retrieve all motion records
     @GetMapping
+    @ResponseBody
     public List<Motion> getMotions() {
         return motionService.getMotions();
     }
 
     // POST endpoint to receive motion data from Arduino
     @PostMapping
+    @ResponseBody
     public ResponseEntity<String> receiveMotionData(@RequestBody MotionDTO motionDto) {
         // Print the received boolean motion status
         LocalDateTime now = LocalDateTime.now();
@@ -46,5 +50,13 @@ public class MotionController {
                 "Data received: " + (motion.isMotionSensorStatus() ? "Motion detected" : "No motion"),
                 HttpStatus.CREATED
         );
+    }
+
+    // Provide the Thymeleaf page with motion data
+    @GetMapping("/motion-data")
+    public String getMotionData(Model model) {
+        List<Motion> motions = motionService.getMotions();
+        model.addAttribute("motions", motions);
+        return "motion-data";
     }
 }
