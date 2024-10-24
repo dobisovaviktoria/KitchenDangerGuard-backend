@@ -11,8 +11,7 @@ import java.util.List;
 @Service
 public class MotionService {
 
-private final MotionRepository motionRepository;
-
+    private final MotionRepository motionRepository;
 
     @Autowired
     public MotionService(MotionRepository motionRepository) {
@@ -21,11 +20,14 @@ private final MotionRepository motionRepository;
 
     @GetMapping
     public List<Motion> getMotions() {
-    return motionRepository.findAll();
+        return motionRepository.findAll();
     }
 
     public void addNewMotion(Motion motion) {
-       motionRepository.findMotionByMotionSensorId(motion.getMotionSensorId());
+        motionRepository.findMotionByMotionSensorId(motion.getMotionSensorId());
+        motionRepository.save(motion);
+        System.out.println("Motion data saved: " + motion);
         System.out.println(motion);
     }
+
 }
