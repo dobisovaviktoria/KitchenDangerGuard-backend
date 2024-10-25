@@ -25,37 +25,37 @@ public class Temperature {
             updatable = false
     )
     @Id
-    private Integer temp_Id;
+    private Integer temperatureSensorId;
 
     @Column(
             name = "temp_value"
     )
-    private float temp_value;
+    private float temperatureSensorValue;
 
     @Column(
             name = "temp_timestamp"
     )
-    private LocalDateTime temp_timestamp;
+    private LocalDateTime temperatureTimestamp;
 
     public Temperature() {}
-    public Temperature( float temp_value, LocalDateTime temp_timestamp) {
-        this.temp_value = temp_value;
-        this.temp_timestamp = temp_timestamp;
+    public Temperature( float temperatureSensorValue, LocalDateTime temperatureTimestamp) {
+        this.temperatureSensorValue = temperatureSensorValue;
+        this.temperatureTimestamp = temperatureTimestamp;
     }
 
-    public float getTemp_value() {
-        return temp_value;
+    public float getTemperatureSensorValue() {
+        return temperatureSensorValue;
     }
 
-    public void setTemp_value(float temp_value) {
-        this.temp_value = temp_value;
+    public void setTemperatureSensorValue(float temperatureSensorValue) {
+        this.temperatureSensorValue = temperatureSensorValue;
     }
 
-    public LocalDateTime getTemp_timestamp() {
-        return temp_timestamp;
+    public LocalDateTime getTemperatureTimestamp() {
+        return temperatureTimestamp;
     }
 
-    public void setTemp_timestamp(LocalDateTime temp_timestamp) {
-        this.temp_timestamp = temp_timestamp;
+    public void setTemperatureTimestamp(LocalDateTime temperatureTimestamp) {
+        this.temperatureTimestamp = temperatureTimestamp;
     }
 }

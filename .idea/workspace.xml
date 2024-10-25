@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55291e45-4673-408c-b0dd-f9917fd34d6a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/config/MotionConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/config/MotionConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/controller/MotionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/controller/MotionController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +104,7 @@
     "Spring Boot.Integration3Application.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/KdG/Year 2/Programming/Programming 3/sample jpa/gs-accessing-data-jpa",
+    "last_opened_file_path": "C:/KDG/Kitchen-Danger_Guard",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -187,6 +183,7 @@
       <workItem from="1729682661381" duration="16846000" />
       <workItem from="1729706703606" duration="368000" />
       <workItem from="1729707121511" duration="1482000" />
+      <workItem from="1729837904772" duration="158000" />
     </task>
     <servers />
   </component>
