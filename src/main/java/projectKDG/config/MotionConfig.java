@@ -4,7 +4,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import projectKDG.domain.Motion;
+import projectKDG.domain.Temperature;
 import projectKDG.repository.MotionRepository;
+import projectKDG.repository.TemperatureRepository;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,12 +19,15 @@ public class MotionConfig {
     LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
 
     @Bean
-    CommandLineRunner commandLineRunner(MotionRepository repository) {
+    CommandLineRunner commandLineRunner(MotionRepository repository, TemperatureRepository temperatureRepository) {
         return args -> {
             Motion eenie = new Motion(true, dateTime);
             Motion meenie= new Motion(false, dateTime);
             repository.saveAll(List.of(eenie, meenie));
 
+            Temperature minie = new Temperature(47.7F, dateTime);
+            Temperature moo = new Temperature(48.8F, dateTime);
+            temperatureRepository.saveAll(List.of(minie, moo));
 
         };
     }
