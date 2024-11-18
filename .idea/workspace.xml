@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="55291e45-4673-408c-b0dd-f9917fd34d6a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/motion-data.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/motion-data.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -203,7 +202,7 @@
       <workItem from="1729707121511" duration="1482000" />
       <workItem from="1729837904772" duration="158000" />
       <workItem from="1729843853596" duration="3207000" />
-      <workItem from="1731915244014" duration="3989000" />
+      <workItem from="1731915244014" duration="4973000" />
     </task>
     <servers />
   </component>
