@@ -7,8 +7,20 @@
 <body>
 <div th:insert="fragments/navbar.html"></div>
 <div class="container">
-    <h1>This is a Static Page</h1>
-    <p>Content is not processed by Thymeleaf.</p>
+    <form>
+        <div class="credentials">
+            <div class="username">
+                <span class="glyphicon glyphicon-user"></span>
+                <input type="text" name="username" placeholder="Username/email" required="">
+            </div>
+            <div class="password">
+                <span class="glyphicon glyphicon-lock"></span>
+                <input type="password" name="password" placeholder="Password" required="">
+            </div>
+            <button class="submit">Login!</button>
+        </div>
+    </form>
+    <p>Don't have an account yet? sign up <a th:href="@{signup}">here</a></p>
 </div>
 <div th:insert="fragments/footer.html"></div>
 </body>
