@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
-@RequestMapping(path = "motion")
+@RequestMapping()
 public class MotionController {
 
     private final MotionService motionService;
