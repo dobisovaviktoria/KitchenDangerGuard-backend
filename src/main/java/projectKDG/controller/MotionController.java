@@ -59,4 +59,9 @@ public class MotionController {
         model.addAttribute("motions", motions);
         return "motion-data";
     }
+
+    @GetMapping("/home")
+    public String homePage() {
+        return "home";
+    }
 }

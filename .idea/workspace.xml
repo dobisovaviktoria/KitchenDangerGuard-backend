@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="55291e45-4673-408c-b0dd-f9917fd34d6a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/motion-data.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/motion-data.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,6 +126,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\KDG\Kitchen-Danger_Guard\src\main\resources\templates\static" />
+      <recent name="C:\KDG\Kitchen-Danger_Guard\src\main\resources\templates" />
       <recent name="D:\KdG\Year 2\Programming\Programming 3\Kitchen-Danger_Guard\src\main\java\project" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -202,7 +204,7 @@
       <workItem from="1729707121511" duration="1482000" />
       <workItem from="1729837904772" duration="158000" />
       <workItem from="1729843853596" duration="3207000" />
-      <workItem from="1731915244014" duration="4973000" />
+      <workItem from="1731915244014" duration="6727000" />
     </task>
     <servers />
   </component>
