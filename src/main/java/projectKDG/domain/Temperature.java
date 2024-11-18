@@ -8,8 +8,6 @@ import java.time.LocalDateTime;
 @Table(name = "temperature_data")
 public class Temperature {
 
-
-
     @SequenceGenerator(
             name = "sequence_temp",
             sequenceName= "sequence_temp",
@@ -41,6 +39,14 @@ public class Temperature {
     public Temperature( float temperatureSensorValue, LocalDateTime temperatureTimestamp) {
         this.temperatureSensorValue = temperatureSensorValue;
         this.temperatureTimestamp = temperatureTimestamp;
+    }
+
+    public Integer getTemperatureSensorId() {
+        return temperatureSensorId;
+    }
+
+    public void setTemperatureSensorId(Integer temperatureSensorId) {
+        this.temperatureSensorId = temperatureSensorId;
     }
 
     public float getTemperatureSensorValue() {

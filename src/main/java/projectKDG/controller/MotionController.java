@@ -25,14 +25,14 @@ public class MotionController {
     }
 
     // GET endpoint to retrieve all motion records
-    @GetMapping
+    @GetMapping("/motion")
     @ResponseBody
     public List<Motion> getMotions() {
         return motionService.getMotions();
     }
 
     // POST endpoint to receive motion data from Arduino
-    @PostMapping
+    @PostMapping("/motion")
     @ResponseBody
     public ResponseEntity<String> receiveMotionData(@RequestBody MotionDTO motionDto) {
         // Print the received boolean motion status
