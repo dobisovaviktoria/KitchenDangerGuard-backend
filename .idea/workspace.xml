@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="55291e45-4673-408c-b0dd-f9917fd34d6a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/Integration3Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/Integration3Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/domain/User.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +54,8 @@
       <list>
         <option value="com.intellij.jpb.JpaEntity" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -77,7 +79,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -90,34 +92,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Gradle.Build Kitchen-Danger_Guard.executor": "Run",
-    "HTTP Request.generated-requests | #1.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.Integration3Application (1).executor": "Run",
-    "Spring Boot.Integration3Application.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/KDG/Kitchen-Danger_Guard",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Gradle.Build Kitchen-Danger_Guard.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #1.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Integration3Application (1).executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.Integration3Application.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/KDG/Kitchen-Danger_Guard&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\KdG\Year 2\Programming\Programming 3\Kitchen-Danger_Guard\src\main\java\project" />
@@ -200,5 +202,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/projectKDG/domain/User.java</url>
+          <line>8</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
