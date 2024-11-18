@@ -30,4 +30,8 @@ public class MotionService {
         System.out.println(motion);
     }
 
+    public List<Motion> getLatestMotions() {
+        return motionRepository.findLatestMotions();
+    }
+
 }

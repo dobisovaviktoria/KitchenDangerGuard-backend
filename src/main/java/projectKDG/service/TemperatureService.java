@@ -28,4 +28,8 @@ public class TemperatureService{
         System.out.println("Motion data saved: " + temperature);
         System.out.println(temperature);
     }
+
+    public List<Temperature> getLatestTemperatures() {
+        return temperatureRepository.findLatestTemperatures();
+    }
 }
