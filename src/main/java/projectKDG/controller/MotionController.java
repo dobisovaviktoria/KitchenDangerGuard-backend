@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping()
-public class MotionController {
+public class    MotionController {
 
     private final MotionService motionService;
 

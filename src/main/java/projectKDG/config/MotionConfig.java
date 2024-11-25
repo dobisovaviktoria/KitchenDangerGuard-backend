@@ -9,26 +9,43 @@ import projectKDG.repository.MotionRepository;
 import projectKDG.repository.TemperatureRepository;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Configuration
 public class MotionConfig {
-    String dateString = "2000-10-23 14:30:00";
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
 
     @Bean
     CommandLineRunner commandLineRunner(MotionRepository repository, TemperatureRepository temperatureRepository) {
         return args -> {
-            Motion eenie = new Motion(true, dateTime);
-            Motion meenie= new Motion(false, dateTime);
-            repository.saveAll(List.of(eenie, meenie));
 
-            Temperature minie = new Temperature(47.7F, dateTime);
-            Temperature moo = new Temperature(48.8F, dateTime);
-            temperatureRepository.saveAll(List.of(minie, moo));
+            // Initialize random number generator
+            Random random = new Random();
 
+            // Generate 100 randomized motion data points
+            List<Motion> motions = new ArrayList<>();
+            for (int i = 0; i < 100; i++) {
+                boolean motionDetected = random.nextBoolean(); // Random true/false
+                LocalDateTime randomDateTime = LocalDateTime.now()
+                        .minusDays(random.nextInt(365)) // Random day within the last year
+                        .minusHours(random.nextInt(24)) // Random hour of the day
+                        .minusMinutes(random.nextInt(60)); // Random minute
+                motions.add(new Motion(motionDetected, randomDateTime));
+            }
+            repository.saveAll(motions);
+
+            // Generate 100 randomized temperature data points
+            List<Temperature> temperatures = new ArrayList<>();
+            for (int i = 0; i < 100; i++) {
+                float randomTemp = 20.0F + random.nextFloat() * 30.0F; // Random temp between 20.0 and 50.0
+                LocalDateTime randomDateTime = LocalDateTime.now()
+                        .minusDays(random.nextInt(365)) // Random day within the last year
+                        .minusHours(random.nextInt(24)) // Random hour of the day
+                        .minusMinutes(random.nextInt(60)); // Random minute
+                temperatures.add(new Temperature(randomTemp, randomDateTime));
+            }
+            temperatureRepository.saveAll(temperatures);
         };
     }
 }
