@@ -30,6 +30,6 @@ public class UserController {
     public String processSignUp(@ModelAttribute("user") User user) {
         // Save the user object to the database
         userService.saveUser(user);
-        return "redirect:/success";  // Redirect to a success page after saving
+        return "redirect:/login";  // Redirect to a success page after saving
     }
 }

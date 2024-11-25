@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="55291e45-4673-408c-b0dd-f9917fd34d6a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/signup.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,8 +73,8 @@
 }</component>
   <component name="GitLabMergeRequestsSettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;first&quot;: &quot;git@gitlab.com:kdg-ti/integration-2.1/24-25/team-7/Kitchen-Danger_Guard.git&quot;,
-    &quot;second&quot;: &quot;2c623448-6869-48c0-8008-cb93c10f22c9&quot;
+    &quot;first&quot;: &quot;https://gitlab.com/kdg-ti/integration-2.1/24-25/team-7/Kitchen-Danger_Guard.git&quot;,
+    &quot;second&quot;: &quot;b863288d-cfdf-47d8-abe2-fc6d1a3521e3&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -185,7 +185,10 @@
       <workItem from="1729706703606" duration="368000" />
       <workItem from="1729707121511" duration="1482000" />
       <workItem from="1729837904772" duration="158000" />
-      <workItem from="1731936501813" duration="114000" />
+      <workItem from="1731936501813" duration="1222000" />
+      <workItem from="1731950358230" duration="602000" />
+      <workItem from="1731954942531" duration="178000" />
+      <workItem from="1732520837542" duration="1439000" />
     </task>
     <servers />
   </component>
