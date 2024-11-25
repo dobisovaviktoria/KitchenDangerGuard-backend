@@ -19,9 +19,26 @@ public class HistoryController {
 
     @GetMapping("/history")
     public String getHistory(Model model) {
-        // Fetch the latest 10 entries for both Motion and Temperature
+        // Fetch the latest 20 entries for both Motion and Temperature
+        var motions = motionService.getLatestMotions();
+        var motionsAll = motionService.getMotions();
+        var temperatures = temperatureService.getLatestTemperatures();
         model.addAttribute("motions", motionService.getLatestMotions());
         model.addAttribute("temperatures", temperatureService.getLatestTemperatures());
+
+        model.addAttribute("motionTimestamps", motionsAll.stream()
+                .map(m -> m.getMotionTimestamp().toString())
+                .toList());
+        model.addAttribute("motionStatuses", motionsAll.stream()
+                .map(m -> m.isMotionSensorStatus() ? 1 : 0)
+                .toList());
+
+        model.addAttribute("temperatureTimestamps", temperatures.stream()
+                .map(t -> t.getTemperatureTimestamp().toString())
+                .toList());
+        model.addAttribute("temperatureValues", temperatures.stream()
+                .map(t -> t.getTemperatureSensorValue())
+                .toList());
         return "history";
     }
 }

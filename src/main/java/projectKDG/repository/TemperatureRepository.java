@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface TemperatureRepository extends JpaRepository<Temperature, Integer> {
     Optional<Temperature> findTemperatureByTemperatureSensorId(Integer temperatureSensorId);
 
-    @Query("SELECT t FROM Temperature t ORDER BY t.temperatureTimestamp DESC LIMIT 10")
+    @Query("SELECT t FROM Temperature t ORDER BY t.temperatureTimestamp DESC LIMIT 20")
     List<Temperature> findLatestTemperatures();
 }

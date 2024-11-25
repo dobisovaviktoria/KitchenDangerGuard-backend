@@ -4,6 +4,7 @@
     <title>History</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
 
@@ -16,38 +17,160 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>Motion Sensor ID</th>
             <th>Status</th>
-            <th>Timestamp</th>
+            <th>Day</th>
+            <th>Time</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="motion : ${motions}">
-            <td th:text="${motion.motionSensorId}"></td>
             <td th:text="${motion.motionSensorStatus ? 'Detected' : 'No Motion'}"></td>
-            <td th:text="${motion.motionTimestamp}"></td>
+            <td th:text="${(motion.motionTimestamp.dayOfMonth < 10 ? '0' + motion.motionTimestamp.dayOfMonth : motion.motionTimestamp.dayOfMonth)
+                + '.' +
+                (motion.motionTimestamp.monthValue < 10 ? '0' + motion.motionTimestamp.monthValue : motion.motionTimestamp.monthValue)
+                + '.' + motion.motionTimestamp.year}"></td>
+            <td th:text="${(motion.motionTimestamp.hour < 10 ? '0' + motion.motionTimestamp.hour : motion.motionTimestamp.hour)
+                + ':' +
+                (motion.motionTimestamp.minute < 10 ? '0' + motion.motionTimestamp.minute : motion.motionTimestamp.minute)
+                + ':' +
+                (motion.motionTimestamp.second < 10 ? '0' + motion.motionTimestamp.second : motion.motionTimestamp.second)}"></td>
         </tr>
         </tbody>
     </table>
+
+    <h2>The Graph for Complete Motion Data</h2>
+    <canvas id="motionGraph"></canvas>
 
     <h2>Temperature Data</h2>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>Temperature Sensor ID</th>
             <th>Value (°C)</th>
-            <th>Timestamp</th>
+            <th>Date</th>
+            <th>Time</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="temp : ${temperatures}">
-            <td th:text="${temp.getTemperatureSensorId()}"></td>
             <td th:text="${temp.getTemperatureSensorValue()}"></td>
-            <td th:text="${temp.getTemperatureTimestamp()}"></td>
+            <td th:text="${(temp.temperatureTimestamp.dayOfMonth < 10 ? '0' + temp.temperatureTimestamp.dayOfMonth : temp.temperatureTimestamp.dayOfMonth)
+                + '.' +
+                (temp.temperatureTimestamp.monthValue < 10 ? '0' + temp.temperatureTimestamp.monthValue : temp.temperatureTimestamp.monthValue)
+                + '.' + temp.temperatureTimestamp.year}"></td>
+            <td th:text="${(temp.temperatureTimestamp.hour < 10 ? '0' + temp.temperatureTimestamp.hour : temp.temperatureTimestamp.hour)
+                + ':' +
+                (temp.temperatureTimestamp.minute < 10 ? '0' + temp.temperatureTimestamp.minute : temp.temperatureTimestamp.minute)
+                + ':' +
+                (temp.temperatureTimestamp.second < 10 ? '0' + temp.temperatureTimestamp.second : temp.temperatureTimestamp.second)}"></td>
         </tr>
         </tbody>
     </table>
+
+    <h2>The Graph for The Latest Temperature</h2>
+    <canvas id="temperatureGraph" width="800" height="600"></canvas>
 </div>
+
+<script th:inline="javascript">
+    let motionTimestamps = [[${motionTimestamps}]];
+    let motionStatuses = [[${motionStatuses}]];
+
+    // Count the motion detected and not detected
+    let detectedCount = motionStatuses.filter(status => status === 1).length;
+    let noMotionCount = motionStatuses.length - detectedCount;
+
+    let temperatureTimestamps = [[${temperatureTimestamps}]];
+    let temperatureValues = [[${temperatureValues}]];
+
+    // Create the motion pie chart
+    const motionGraphCtx = document.getElementById('motionGraph').getContext('2d');
+    new Chart(motionGraphCtx, {
+        type: 'pie',
+        data: {
+            labels: ['Motion Detected', 'No Motion'],
+            datasets: [{
+                label: 'Motion Status Distribution',
+                data: [detectedCount, noMotionCount],
+                backgroundColor: ['rgb(75, 192, 192)', 'rgb(255, 99, 132)'],
+                borderColor: ['rgb(75, 192, 192)', 'rgb(255, 99, 132)'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            aspectRatio: 3,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            var label = tooltipItem.label || '';
+                            var value = tooltipItem.raw;
+                            var total = detectedCount + noMotionCount;
+                            var percentage = ((value / total) * 100).toFixed(2);
+                            return `${label}: ${value} (${percentage}%)`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Create the temperature line chart
+    const temperatureGraphCtx = document.getElementById('temperatureGraph').getContext('2d');
+    new Chart(temperatureGraphCtx, {
+        type: 'line',
+        data: {
+            labels: temperatureTimestamps,
+            datasets: [{
+                label: 'Temperature (°C)',
+                data: temperatureValues,
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                fill: true,
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            var label = tooltipItem.label || '';
+                            var value = tooltipItem.raw;
+                            return `${label}: ${value}°C`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Time'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Temperature (°C)'
+                    },
+                    ticks: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        }
+    });
+</script>
 
 
 <div th:insert="fragments/footer.html"></div>
