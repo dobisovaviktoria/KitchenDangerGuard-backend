@@ -25,9 +25,11 @@ public class MotionService {
 
     public void addNewMotion(Motion motion) {
         motionRepository.findMotionByMotionSensorId(motion.getMotionSensorId());
-        motionRepository.save(motion);
-        System.out.println("Motion data saved: " + motion);
-        System.out.println(motion);
+        if (motion.isMotionSensorStatus() != motionRepository.findLastMotion().isMotionSensorStatus()){
+            motionRepository.save(motion);
+            System.out.println("Motion data saved: " + motion);
+            System.out.println(motion);
+        }
     }
 
     public List<Motion> getLatestMotions() {

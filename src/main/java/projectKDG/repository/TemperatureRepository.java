@@ -12,4 +12,7 @@ public interface TemperatureRepository extends JpaRepository<Temperature, Intege
 
     @Query("SELECT t FROM Temperature t ORDER BY t.temperatureTimestamp DESC LIMIT 20")
     List<Temperature> findLatestTemperatures();
+
+    @Query("SELECT t FROM Temperature t ORDER BY t.temperatureTimestamp DESC LIMIT 1")
+    Temperature findLastTemperature();
 }

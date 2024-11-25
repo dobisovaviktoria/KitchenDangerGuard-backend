@@ -24,9 +24,11 @@ public class TemperatureService{
 
     public void addNewTemperature(Temperature temperature) {
         temperatureRepository.findTemperatureByTemperatureSensorId(temperature.getTemperatureSensorId());
-        temperatureRepository.save(temperature);
-        System.out.println("Motion data saved: " + temperature);
-        System.out.println(temperature);
+        if (temperature.getTemperatureSensorValue() != temperatureRepository.findLastTemperature().getTemperatureSensorValue()){
+            temperatureRepository.save(temperature);
+            System.out.println("Motion data saved: " + temperature);
+            System.out.println(temperature);
+        }
     }
 
     public List<Temperature> getLatestTemperatures() {

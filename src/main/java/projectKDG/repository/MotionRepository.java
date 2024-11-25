@@ -16,4 +16,7 @@ public interface MotionRepository
 
     @Query("SELECT m FROM Motion m ORDER BY m.motionTimestamp DESC LIMIT 20")
     List<Motion> findLatestMotions();
+
+    @Query("SELECT m FROM Motion m ORDER BY m.motionTimestamp DESC LIMIT 1")
+    Motion findLastMotion();
 }
