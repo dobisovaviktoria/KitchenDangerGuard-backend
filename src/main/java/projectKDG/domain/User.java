@@ -2,6 +2,8 @@ package projectKDG.domain;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
 @Entity
@@ -31,7 +33,7 @@ public class User {
     @Column(
             name = "age"
     )
-    private int age;
+    private LocalDate age;
 
     @Column(
             name = "password"
@@ -47,7 +49,7 @@ public class User {
     )
     private String phone;
 
-    public User(String phone, String email, String password, int age, String userName) {
+    public User(String phone, String email, String password, LocalDate age, String userName) {
         this.phone = phone;
         this.email = email;
         this.password = password;
@@ -58,11 +60,11 @@ public class User {
     public User() {
     }
 
-    public int getAge() {
+    public LocalDate getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(LocalDate age) {
         this.age = age;
     }
 
