@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="55291e45-4673-408c-b0dd-f9917fd34d6a" name="Changes" comment="randomizing dummy data">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/controller/HistoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/repository/TemperatureRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/repository/TemperatureRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/service/TemperatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/service/TemperatureService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/history.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/history.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +56,8 @@
       <list>
         <option value="com.intellij.jpb.JpaEntity" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -127,7 +131,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Integration3Application">
-    <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="#1" runType="Run single request">
+    <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="Integration3Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">

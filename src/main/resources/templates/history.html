@@ -68,6 +68,9 @@
 
     <h2>The Graph for The Latest Temperature</h2>
     <canvas id="temperatureGraph" width="800" height="600"></canvas>
+
+    <h2>How much was the Stove On?</h2>
+    <canvas id="stoveDurationChart" width="400" height="200"></canvas>
 </div>
 
 <script th:inline="javascript">
@@ -80,6 +83,10 @@
 
     let temperatureTimestamps = [[${temperatureTimestamps}]];
     let temperatureValues = [[${temperatureValues}]];
+
+    const durationsData = [[${durations}]];
+    const labels = durationsData.map((usage, index) => `Session ${index + 1}`);
+    const durations = durationsData.map(usage => usage.duration / 60);
 
     // Create the motion pie chart
     const motionGraphCtx = document.getElementById('motionGraph').getContext('2d');
@@ -165,6 +172,40 @@
                     },
                     ticks: {
                         beginAtZero: false
+                    }
+                }
+            }
+        }
+    });
+
+    // Create a bar chart for durations
+    const ctx = document.getElementById('stoveDurationChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Stove Usage Duration (Minutes)',
+                data: durations,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Duration (Minutes)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Sessions'
                     }
                 }
             }
