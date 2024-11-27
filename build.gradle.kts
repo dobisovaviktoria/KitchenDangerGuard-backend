@@ -22,17 +22,18 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    implementation ("jakarta.persistence:jakarta.persistence-api:3.1.0")
-    implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation ("org.springframework.boot:spring-boot-starter-web")
-    implementation ("org.postgresql:postgresql:42.5.4")
+    implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.postgresql:postgresql:42.5.4")
     implementation("org.springframework.integration:spring-integration-mqtt")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.webjars:bootstrap:5.3.3")
     implementation("org.webjars:webjars-locator-core:0.59")
     implementation("org.webjars.npm:bootstrap-icons:1.11.1")
+
     // Spring Boot Mail dependency for sending emails
-    implementation ("org.springframework.boot:spring-boot-starter-mail")
+    implementation("org.springframework.boot:spring-boot-starter-mail")
 
 }
 
