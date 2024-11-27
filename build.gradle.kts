@@ -31,6 +31,9 @@ dependencies {
     implementation("org.webjars:bootstrap:5.3.3")
     implementation("org.webjars:webjars-locator-core:0.59")
     implementation("org.webjars.npm:bootstrap-icons:1.11.1")
+    // Spring Boot Mail dependency for sending emails
+    implementation ("org.springframework.boot:spring-boot-starter-mail")
+
 }
 
 tasks.withType<Test> {

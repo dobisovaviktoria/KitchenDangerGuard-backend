@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="55291e45-4673-408c-b0dd-f9917fd34d6a" name="Changes" comment="randomizing dummy data">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +54,8 @@
       <list>
         <option value="com.intellij.jpb.JpaEntity" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -188,6 +190,8 @@
       <workItem from="1731950358230" duration="602000" />
       <workItem from="1731954942531" duration="178000" />
       <workItem from="1732520837542" duration="1855000" />
+      <workItem from="1732560886847" duration="49000" />
+      <workItem from="1732705005866" duration="4501000" />
     </task>
     <task id="LOCAL-00001" summary="randomizing dummy data">
       <option name="closed" value="true" />
