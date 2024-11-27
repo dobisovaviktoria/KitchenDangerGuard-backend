@@ -25,6 +25,7 @@ public class TemperatureService{
     public void addNewTemperature(Temperature temperature) {
         temperatureRepository.findTemperatureByTemperatureSensorId(temperature.getTemperatureSensorId());
         if (temperature.getTemperatureSensorValue() != temperatureRepository.findLastTemperature().getTemperatureSensorValue()){
+            temperature.setTemperatureSensorValue(Math.round(temperature.getTemperatureSensorValue()));
             temperatureRepository.save(temperature);
             System.out.println("Motion data saved: " + temperature);
             System.out.println(temperature);

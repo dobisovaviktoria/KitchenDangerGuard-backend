@@ -6,6 +6,7 @@ import projectKDG.domain.User;
 import projectKDG.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -17,6 +18,10 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public boolean emailExists(String email) {
+        return userRepository.findByEmail(email).isPresent();
+    }
+
     // Save a new user to the database
     public void saveUser(User user) {
         userRepository.save(user);
@@ -25,5 +30,10 @@ public class UserService {
     // Retrieve all users from the database (if needed)
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+    // Find user by email and validate password
+    public boolean validateUser(String email, String password) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        return userOptional.isPresent() && userOptional.get().getPassword().equals(password);
     }
 }
