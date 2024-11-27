@@ -39,12 +39,14 @@ public class EmailConfig {
         mailSender.setUsername(username);
         mailSender.setPassword(password);
 
-        Properties properties = new Properties();
-//        properties.put("mail.smtp.auth", smtpAuth);
-        properties.put("mail.smtp.starttls.enable", startTlsEnable); // Ensure STARTTLS is enabled
-        properties.put("mail.smtp.timeout", "5000"); // Set timeout to avoid long waiting times
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtps");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "false");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.debug", "true");;
 
-        mailSender.setJavaMailProperties(properties);
         return mailSender;
     }
 }
