@@ -5,6 +5,7 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="/js/charts.js" defer></script>
 </head>
 <body>
 
@@ -18,7 +19,7 @@
         <thead>
         <tr>
             <th>Status</th>
-            <th>Day</th>
+            <th>Date</th>
             <th>Time</th>
         </tr>
         </thead>
@@ -72,147 +73,6 @@
     <h2>How much was the Stove On?</h2>
     <canvas id="stoveDurationChart" width="400" height="200"></canvas>
 </div>
-
-<script th:inline="javascript">
-    let motionTimestamps = [[${motionTimestamps}]];
-    let motionStatuses = [[${motionStatuses}]];
-
-    // Count the motion detected and not detected
-    let detectedCount = motionStatuses.filter(status => status === 1).length;
-    let noMotionCount = motionStatuses.length - detectedCount;
-
-    let temperatureTimestamps = [[${temperatureTimestamps}]];
-    let temperatureValues = [[${temperatureValues}]];
-
-    const durationsData = [[${durations}]];
-    const labels = durationsData.map((usage, index) => `Session ${index + 1}`);
-    const durations = durationsData.map(usage => usage.duration / 60);
-
-    // Create the motion pie chart
-    const motionGraphCtx = document.getElementById('motionGraph').getContext('2d');
-    new Chart(motionGraphCtx, {
-        type: 'pie',
-        data: {
-            labels: ['Motion Detected', 'No Motion'],
-            datasets: [{
-                label: 'Motion Status Distribution',
-                data: [detectedCount, noMotionCount],
-                backgroundColor: ['rgb(75, 192, 192)', 'rgb(255, 99, 132)'],
-                borderColor: ['rgb(75, 192, 192)', 'rgb(255, 99, 132)'],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            aspectRatio: 3,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            var label = tooltipItem.label || '';
-                            var value = tooltipItem.raw;
-                            var total = detectedCount + noMotionCount;
-                            var percentage = ((value / total) * 100).toFixed(2);
-                            return `${label}: ${value} (${percentage}%)`;
-                        }
-                    }
-                }
-            }
-        }
-    });
-
-    // Create the temperature line chart
-    const temperatureGraphCtx = document.getElementById('temperatureGraph').getContext('2d');
-    new Chart(temperatureGraphCtx, {
-        type: 'line',
-        data: {
-            labels: temperatureTimestamps,
-            datasets: [{
-                label: 'Temperature (°C)',
-                data: temperatureValues,
-                borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                fill: true,
-                tension: 0.1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            var label = tooltipItem.label || '';
-                            var value = tooltipItem.raw;
-                            return `${label}: ${value}°C`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        display: false
-                    },
-                    title: {
-                        display: true,
-                        text: 'Time'
-                    }
-                },
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Temperature (°C)'
-                    },
-                    ticks: {
-                        beginAtZero: false
-                    }
-                }
-            }
-        }
-    });
-
-    // Create a bar chart for durations
-    const ctx = document.getElementById('stoveDurationChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Stove Usage Duration (Minutes)',
-                data: durations,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Duration (Minutes)'
-                    }
-                },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Sessions'
-                    }
-                }
-            }
-        }
-    });
-</script>
-
 
 <div th:insert="fragments/footer.html"></div>
 

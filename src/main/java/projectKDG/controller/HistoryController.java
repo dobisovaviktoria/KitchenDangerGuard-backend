@@ -30,21 +30,7 @@ public class HistoryController {
         model.addAttribute("motions", motionService.getLatestMotions());
         model.addAttribute("temperatures", temperatureService.getLatestTemperatures());
 
-        model.addAttribute("motionTimestamps", motionsAll.stream()
-                .map(m -> m.getMotionTimestamp().toString())
-                .toList());
-        model.addAttribute("motionStatuses", motionsAll.stream()
-                .map(m -> m.isMotionSensorStatus() ? 1 : 0)
-                .toList());
-
-        model.addAttribute("temperatureTimestamps", temperatures.stream()
-                .map(t -> t.getTemperatureTimestamp().toString())
-                .toList());
-        model.addAttribute("temperatureValues", temperatures.stream()
-                .map(t -> t.getTemperatureSensorValue())
-                .toList());
-        model.addAttribute("durations", stoveService.calculateStoveDurations(temperaturesAll));
-        System.out.println(stoveService.calculateStoveDurations(temperatures));
         return "history";
     }
 }
+
