@@ -40,7 +40,7 @@ public class AlertService {
         this.userNotificationDestination = userNotificationDestination;
     }
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 10000)
     public void checkForAlert() {
         Motion latestMotion = motionRepository.findLastMotion();
         Temperature latestTemperature = temperatureRepository.findLastTemperature();
