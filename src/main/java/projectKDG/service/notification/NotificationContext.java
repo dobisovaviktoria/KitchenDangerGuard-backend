@@ -1,15 +1,18 @@
 package projectKDG.service.notification;
 
-public class NotificationContext {
-    private NotificationStrategy strategy;
+import org.springframework.stereotype.Component;
+import projectKDG.domain.NotificationPreference;
 
-    public NotificationContext(NotificationStrategy strategy) {
-        this.strategy = strategy;
+@Component
+public class NotificationContext {
+    private final NotificationStrategyFactory strategyFactory;
+
+    public NotificationContext(NotificationStrategyFactory strategyFactory) {
+        this.strategyFactory = strategyFactory;
     }
 
-    public void setStrategy(NotificationStrategy strategy) {}
-
-    public void executeStrategy(Notification notification) {
+    public void executeStrategy(Notification notification, NotificationPreference strategyType) {
+        NotificationStrategy strategy = strategyFactory.createStrategy(strategyType);
         strategy.notify(notification);
     }
 }
