@@ -25,7 +25,7 @@ public class AlertService {
     @Autowired
     private MotionRepository motionRepository;
     private TemperatureRepository temperatureRepository;
-    private EmailService emailService;
+
     private NotificationContext notificationContext;
     private String userNotificationDestination;
 
@@ -59,34 +59,8 @@ public class AlertService {
                 log.info("Sending alert notification");
                 notificationContext.executeStrategy(new Notification(userNotificationDestination, "KDG Alert. Temperature value is: " + latestTemperature.getTemperatureSensorValue()));
 
-//                // Calculate time since last motion detected
-//                long durationInMinutes = ChronoUnit.MINUTES.between(
-//                        latestMotion.getMotionTimestamp(), LocalDateTime.now());
 
-                // Trigger alert if unattended duration exceeds threshold
-//                if (durationInMinutes >= everyMinute) {
-//                    sendAlertEmail(latestMotion, latestTemperature, durationInMinutes);
-//
-//                }
             }
-        }
-    }
-
-    private void sendAlertEmail(Motion latestMotion, Temperature latestTemperature, long durationInMinutes) {
-        String recipientEmail = "dobisovav@gmail.com"; // Replace with recipient's email
-        String subject = "Kitchen Alert: Unattended Stove";
-        String message = String.format(
-                "Alert! The stove has been running (Temperature: %.2f°C), but no motion has been detected " +
-                        "in the kitchen for the last %d minutes. Last motion detected at: %s.",
-                latestTemperature.getTemperatureSensorValue(),
-                durationInMinutes,
-                latestMotion.getMotionTimestamp());
-
-        try {
-            emailService.sendEmail(recipientEmail, subject, message);
-            System.out.println("Alert email sent successfully!");
-        } catch (MailException e) {
-            System.err.println("Error while sending alert email: " + e.getMessage());
         }
     }
 }
