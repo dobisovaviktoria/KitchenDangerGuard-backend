@@ -3,7 +3,9 @@ package projectKDG.service.notification;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EmailNotifier implements NotificationStrategy {
     private final JavaMailSender emailSender;
 

@@ -2,6 +2,7 @@ package projectKDG.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,8 @@ public class AlertService {
 
     private final MotionRepository motionRepository;
     private final TemperatureRepository temperatureRepository;
-    private final NotificationContext notificationContext;
+    //private final NotificationContext notificationContext;
+    NotificationStrategy notificationStrategy;
     private final NotificationPreference userNotificationPreference;
     private final String userNotificationDestination;
 
@@ -30,12 +32,12 @@ public class AlertService {
     public AlertService(
             MotionRepository motionRepository,
             TemperatureRepository temperatureRepository,
-            NotificationContext notificationContext,
+            @Qualifier("compositeNotificationStrategy") NotificationStrategy notificationStrategy,
             @Value("${kdg.notification-preference}") NotificationPreference userNotificationPreference,
             @Value("${kdg.notification-destination}") String userNotificationDestination) {
         this.motionRepository = motionRepository;
         this.temperatureRepository = temperatureRepository;
-        this.notificationContext = notificationContext;
+        this.notificationStrategy = notificationStrategy;
         this.userNotificationPreference = userNotificationPreference;
         this.userNotificationDestination = userNotificationDestination;
     }
@@ -48,10 +50,9 @@ public class AlertService {
             if (!latestMotion.isMotionSensorStatus() &&
                     latestTemperature.getTemperatureSensorValue() > offTemperature) {
                 log.info("Sending alert notification");
-                notificationContext.executeStrategy(
+                notificationStrategy.notify(
                         new Notification(userNotificationDestination,
-                                "KDG Alert. Temperature value is: " + latestTemperature.getTemperatureSensorValue()),
-                        userNotificationPreference);
+                                "KDG Alert. Temperature value is: " + latestTemperature.getTemperatureSensorValue()));
             }
         }
     }
