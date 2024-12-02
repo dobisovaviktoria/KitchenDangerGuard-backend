@@ -20,8 +20,8 @@ public class AlertService {
 
     private final MotionRepository motionRepository;
     private final TemperatureRepository temperatureRepository;
-    //private final NotificationContext notificationContext;
-    NotificationStrategy notificationStrategy;
+    private final NotificationContext notificationContext;
+    //NotificationStrategy notificationStrategy;
     private final NotificationPreference userNotificationPreference;
     private final String userNotificationDestination;
 
@@ -32,12 +32,13 @@ public class AlertService {
     public AlertService(
             MotionRepository motionRepository,
             TemperatureRepository temperatureRepository,
-            @Qualifier("compositeNotificationStrategy") NotificationStrategy notificationStrategy,
+            //@Qualifier("compositeNotificationStrategy") NotificationStrategy notificationStrategy,
+            NotificationContext notificationContext,
             @Value("${kdg.notification-preference}") NotificationPreference userNotificationPreference,
             @Value("${kdg.notification-destination}") String userNotificationDestination) {
         this.motionRepository = motionRepository;
         this.temperatureRepository = temperatureRepository;
-        this.notificationStrategy = notificationStrategy;
+        this.notificationContext = notificationContext;
         this.userNotificationPreference = userNotificationPreference;
         this.userNotificationDestination = userNotificationDestination;
     }
@@ -50,9 +51,9 @@ public class AlertService {
             if (!latestMotion.isMotionSensorStatus() &&
                     latestTemperature.getTemperatureSensorValue() > offTemperature) {
                 log.info("Sending alert notification");
-                notificationStrategy.notify(
+                notificationContext.executeStrategy(
                         new Notification(userNotificationDestination,
-                                "KDG Alert. Temperature value is: " + latestTemperature.getTemperatureSensorValue()));
+                                "KDG Alert. Temperature value is: " + latestTemperature.getTemperatureSensorValue()), userNotificationPreference);
             }
         }
     }
