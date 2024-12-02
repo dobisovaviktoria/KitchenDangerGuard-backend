@@ -1,5 +1,7 @@
 package projectKDG.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import java.util.List;
 
 @Service
 public class TemperatureService{
+    private static final Logger log = LoggerFactory.getLogger(TemperatureService.class);
     private final TemperatureRepository temperatureRepository;
 
     @Autowired
@@ -25,10 +28,11 @@ public class TemperatureService{
     public void addNewTemperature(Temperature temperature) {
         temperatureRepository.findTemperatureByTemperatureSensorId(temperature.getTemperatureSensorId());
         if (temperature.getTemperatureSensorValue() != temperatureRepository.findLastTemperature().getTemperatureSensorValue()){
-            temperature.setTemperatureSensorValue(Math.round(temperature.getTemperatureSensorValue()));
+            temperature.setTemperatureSensorValue(temperature.getTemperatureSensorValue());
             temperatureRepository.save(temperature);
-            System.out.println("Motion data saved: " + temperature);
-            System.out.println(temperature);
+            log.info("Temperature data saved: " + temperature);
+        } else {
+            log.info("Temperature data saving to data base skipped " + temperature);
         }
     }
 

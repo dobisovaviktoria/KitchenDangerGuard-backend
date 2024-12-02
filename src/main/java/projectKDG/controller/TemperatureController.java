@@ -1,5 +1,7 @@
 package projectKDG.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import java.util.List;
 @Controller
 public class TemperatureController {
 
+    private static final Logger log = LoggerFactory.getLogger(TemperatureController.class);
     private final TemperatureService temperatureService;
 
     @Autowired
@@ -35,7 +38,8 @@ public class TemperatureController {
     public ResponseEntity<String> receiveTemperatureData(@RequestBody TemperatureDTO temperatureDto) {
         // Print the received boolean motion status
         LocalDateTime now = LocalDateTime.now();
-        System.out.println("Received temperature data: " + temperatureDto.getTemperatureValue() + " at " + now);
+        log.info("Received temperature data: {} at {}", temperatureDto.getTemperatureValue(), now);
+
 
         // Save motion data to the database
         Temperature temperature = new Temperature();
