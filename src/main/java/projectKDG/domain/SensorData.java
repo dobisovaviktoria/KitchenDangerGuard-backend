@@ -22,6 +22,11 @@ public class SensorData {
     @Column(name = "timestamp")
     private LocalDateTime timestamp;
 
+    //Relationships
+    @ManyToOne
+    @JoinColumn(name = "arduino_device_id", nullable = false)
+    private ArduinoDevice arduinoDevice;
+
     // Constructors
     public SensorData() {}
 
@@ -62,5 +67,13 @@ public class SensorData {
 
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public ArduinoDevice getArduinoDevice() {
+        return arduinoDevice;
+    }
+
+    public void setArduinoDevice(ArduinoDevice arduinoDevice) {
+        this.arduinoDevice = arduinoDevice;
     }
 }
