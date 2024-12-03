@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import projectKDG.domain.User;
 import projectKDG.service.UserService;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping
@@ -42,17 +43,49 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/login")
+    public String loginPage(){
+        return "login";
+    }
+
     // POST request to handle login form submission
     @PostMapping("/login")
     public String processLogin(
             @RequestParam("email") String email,
             @RequestParam("password") String password,
+            HttpSession session,
             Model model) {
         if (userService.validateUser(email, password)) {
+            // Store user in the session
+            session.setAttribute("loggedInUser", userService.findByEmail(email).orElse(null));
             return "redirect:/home";  // Redirect to a home page on success
         } else {
             model.addAttribute("error", "Invalid email or password");
             return "login";  // Return to the login page with an error message
         }
     }
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();  // Invalidate the session
+        return "redirect:/login";  // Redirect to login page
+    }
+    @GetMapping("/profile")
+    public String profilePage(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("loggedInUser");
+        if (user == null) {
+            return "redirect:/login"; // Redirect to login if not logged in
+        }
+        model.addAttribute("user", user);
+        return "profile";
+    }
+
+    @GetMapping("/home")
+    public String homePage(HttpSession session) {
+        if (session.getAttribute("loggedInUser") == null) {
+            return "redirect:/login";  // Redirect to login if not logged in
+        }
+        return "home";  // Render home page
+    }
+
+
 }
