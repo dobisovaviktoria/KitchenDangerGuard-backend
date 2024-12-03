@@ -2,52 +2,30 @@ package projectKDG.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import projectKDG.domain.Motion;
-import projectKDG.domain.Temperature;
-import projectKDG.repository.MotionRepository;
-import projectKDG.repository.TemperatureRepository;
+import projectKDG.domain.SensorData;
+import projectKDG.repository.SensorDataRepository;
 
 import java.util.List;
 
 @Service
 public class SensorDataService {
 
-    private final MotionRepository motionRepository;
-    private final TemperatureRepository temperatureRepository;
+    private final SensorDataRepository sensorDataRepository;
 
     @Autowired
-    public SensorDataService(MotionRepository motionRepository, TemperatureRepository temperatureRepository) {
-        this.motionRepository = motionRepository;
-        this.temperatureRepository = temperatureRepository;
+    public SensorDataService(SensorDataRepository sensorDataRepository) {
+        this.sensorDataRepository = sensorDataRepository;
     }
 
-    // Save motion data
-    public void saveMotionData(Boolean motionStatus) {
-        if (motionStatus != null) {
-            Motion motion = new Motion();
-            motion.setMotionSensorStatus(motionStatus);
-            motion.setMotionTimestamp(java.time.LocalDateTime.now());
-            motionRepository.save(motion);
+    // Save sensor data (motion + temperature)
+    public void saveSensorData(SensorData sensorData) {
+        if (sensorData != null) {
+            sensorDataRepository.save(sensorData);
         }
     }
 
-    // Save temperature data
-    public void saveTemperatureData(Float temperatureValue) {
-        if (temperatureValue != null) {
-            Temperature temperature = new Temperature();
-            temperature.setTemperatureSensorValue(temperatureValue);
-            temperature.setTemperatureTimestamp(java.time.LocalDateTime.now());
-            temperatureRepository.save(temperature);
-        }
-    }
-
-    // Get all motion data
-    public List<Motion> getAllMotions() {
-        return motionRepository.findAll();
-    }
-
-    // Get all temperature data
-    public List<Temperature> getAllTemperatures() {
-        return temperatureRepository.findAll();
+    // Get all sensor data
+    public List<SensorData> getAllSensorData() {
+        return sensorDataRepository.findAll();
     }
 }
