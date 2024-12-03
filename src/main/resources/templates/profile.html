@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Profile</title>
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+</head>
+<body>
+<div th:insert="fragments/navbar.html"></div>
+<div class="container">
+  <h1>Welcome, <span th:text="${user.userName}"></span></h1>
+  <p>Email: <span th:text="${user.email}"></span></p>
+  <p>Phone: <span th:text="${user.phone}"></span></p>
+  <p>Age: <span th:text="${user.age}"></span></p>
+  <a class="btn btn-secondary" th:href="@{/logout}">Logout</a>
+</div>
+<div th:insert="fragments/footer.html"></div>
+</body>
+</html>
