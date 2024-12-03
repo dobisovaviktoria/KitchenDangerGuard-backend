@@ -10,15 +10,9 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 @Table(name = "user_data")
 public class User {
     @Id
-    @SequenceGenerator(
-            name = "sequence_user",
-            sequenceName = "sequence_user" ,
-            allocationSize =   1
 
-    )
     @GeneratedValue(
-            strategy = SEQUENCE,
-            generator = "sequence_user"
+            strategy = SEQUENCE
     )
     @Column(
             name = "user_id"
@@ -48,6 +42,11 @@ public class User {
             name = "phone"
     )
     private String phone;
+
+
+    ////Relationships between arduinodevice and the user
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private ArduinoDevice arduinoDevice;
 
     public User(String phone, String email, String password, LocalDate age, String userName) {
         this.phone = phone;
@@ -98,5 +97,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public ArduinoDevice getArduinoDevice() {
+        return arduinoDevice;
+    }
+
+    public void setArduinoDevice(ArduinoDevice arduinoDevice) {
+        this.arduinoDevice = arduinoDevice;
     }
 }

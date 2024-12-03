@@ -11,6 +11,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" afterDir="false" />
     </list>
+    <list default="true" id="55291e45-4673-408c-b0dd-f9917fd34d6a" name="Changes" comment="randomizing dummy data" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,9 +57,9 @@
       <list>
         <option value="com.intellij.jpb.JpaEntity" />
         <option value="Interface" />
+        <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="Class" />
-        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -197,8 +198,6 @@
       <workItem from="1732560886847" duration="49000" />
       <workItem from="1732705005866" duration="4501000" />
       <workItem from="1733123542496" duration="325000" />
-      <workItem from="1733224063915" duration="1736000" />
-      <workItem from="1733229621477" duration="2149000" />
     </task>
     <task id="LOCAL-00001" summary="randomizing dummy data">
       <option name="closed" value="true" />

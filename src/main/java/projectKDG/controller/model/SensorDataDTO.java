@@ -1,31 +1,32 @@
 package projectKDG.controller.model;
 
 public class SensorDataDTO {
-    private Boolean motionStatus; // Nullable to handle cases where only temperature is sent
-    private Float temperatureValue; // Nullable to handle cases where only motion is sent
+
+    private boolean motionStatus;
+    private float temperatureValue;
 
     // Constructors
     public SensorDataDTO() {}
 
-    public SensorDataDTO(Boolean motionStatus, Float temperatureValue) {
+    public SensorDataDTO(boolean motionStatus, float temperatureValue) {
         this.motionStatus = motionStatus;
         this.temperatureValue = temperatureValue;
     }
 
-    // Getters and setters
-    public Boolean getMotionStatus() {
+    // Getters and Setters
+    public boolean getMotionStatus() {
         return motionStatus;
     }
 
-    public void setMotionStatus(Boolean motionStatus) {
+    public void setMotionStatus(boolean motionStatus) {
         this.motionStatus = motionStatus;
     }
 
-    public Float getTemperatureValue() {
+    public float getTemperatureValue() {
         return temperatureValue;
     }
 
-    public void setTemperatureValue(Float temperatureValue) {
+    public void setTemperatureValue(float temperatureValue) {
         this.temperatureValue = temperatureValue;
     }
 }
