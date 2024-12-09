@@ -22,14 +22,14 @@ public class SensorData {
     @Column(name = "timestamp")
     private LocalDateTime timestamp;
 
-    //Relationships
-//    @ManyToOne
-//    @JoinColumn(name = "arduino_device_id", nullable = true)
-    @Column(name="arduino_device_id")
-    private int arduinoDevice;
+    @ManyToOne
+    @JoinColumn(name = "arduino_device_id", nullable = true)
+    private ArduinoDevice arduinoDevice;
+
 
     // Constructors
-    public SensorData() {}
+    public SensorData() {
+    }
 
     public SensorData(Boolean motionStatus, Float temperatureValue, LocalDateTime timestamp) {
         this.motionStatus = motionStatus;
@@ -70,11 +70,11 @@ public class SensorData {
         this.timestamp = timestamp;
     }
 
-    public int getArduinoDevice() {
+    public ArduinoDevice getArduinoDevice() {
         return arduinoDevice;
     }
 
-    public void setArduinoDevice(int arduinoDevice) {
+    public void setArduinoDevice(ArduinoDevice arduinoDevice) {
         this.arduinoDevice = arduinoDevice;
     }
 }
