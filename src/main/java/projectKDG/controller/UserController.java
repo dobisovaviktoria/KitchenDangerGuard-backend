@@ -72,9 +72,6 @@ public class UserController {
 
     @GetMapping("/home")
     public String homePage(HttpSession session) {
-        if (session.getAttribute("loggedInUser") == null) {
-            return "redirect:/login";  // Redirect to login if not logged in
-        }
         return "home";  // Render home page
     }
 

@@ -6,14 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="55291e45-4673-408c-b0dd-f9917fd34d6a" name="Changes" comment="randomizing dummy data">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/controller/PageController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/service/MotionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/service/MotionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/service/TemperatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/service/TemperatureService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/signup.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,6 +197,7 @@
       <workItem from="1733123542496" duration="325000" />
       <workItem from="1733577910869" duration="41000" />
       <workItem from="1733687364383" duration="3850000" />
+      <workItem from="1733755430433" duration="337000" />
     </task>
     <task id="LOCAL-00001" summary="randomizing dummy data">
       <option name="closed" value="true" />
