@@ -6,20 +6,22 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import projectKDG.domain.Motion;
 import projectKDG.domain.NotificationPreference;
-import projectKDG.domain.Temperature;
-import projectKDG.repository.MotionRepository;
-import projectKDG.repository.TemperatureRepository;
+import projectKDG.domain.SensorData;
+import projectKDG.repository.SensorDataRepository;
 import projectKDG.service.notification.*;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class AlertService {
 
     private static final Logger log = LoggerFactory.getLogger(AlertService.class);
 
-    private final MotionRepository motionRepository;
-    private final TemperatureRepository temperatureRepository;
+//    private final MotionRepository motionRepository;
+//    private final TemperatureRepository temperatureRepository;
+    private final SensorDataRepository sensorDataRepository;
     private final NotificationContext notificationContext;
     //NotificationStrategy notificationStrategy;
     private final NotificationPreference userNotificationPreference;
@@ -30,14 +32,12 @@ public class AlertService {
 
     // Constructor injection
     public AlertService(
-            MotionRepository motionRepository,
-            TemperatureRepository temperatureRepository,
+            SensorDataRepository sensorDataRepository,
             //@Qualifier("compositeNotificationStrategy") NotificationStrategy notificationStrategy,
             NotificationContext notificationContext,
             @Value("${kdg.notification-preference}") NotificationPreference userNotificationPreference,
             @Value("${kdg.notification-destination}") String userNotificationDestination) {
-        this.motionRepository = motionRepository;
-        this.temperatureRepository = temperatureRepository;
+        this.sensorDataRepository = sensorDataRepository;
         this.notificationContext = notificationContext;
         this.userNotificationPreference = userNotificationPreference;
         this.userNotificationDestination = userNotificationDestination;
@@ -45,15 +45,15 @@ public class AlertService {
 
     @Scheduled(fixedRate = 10000)
     public void checkForAlert() {
-        Motion latestMotion = motionRepository.findLastMotion();
-        Temperature latestTemperature = temperatureRepository.findLastTemperature();
-        if (latestMotion != null && latestTemperature != null) {
-            if (!latestMotion.isMotionSensorStatus() &&
-                    latestTemperature.getTemperatureSensorValue() > offTemperature) {
+        LocalDateTime time = LocalDateTime.now().minusMinutes(10);
+        List<SensorData> latestSensorData = sensorDataRepository.findRecentSensorData(time);
+        if (latestSensorData != null) {
+            if (sensorDataRepository.areAllMotionStatusesFalse(time) &&
+                    sensorDataRepository.findAverageTemperature(time) > offTemperature) {
                 log.info("Sending alert notification");
                 notificationContext.executeStrategy(
                         new Notification(userNotificationDestination,
-                                "KDG Alert. Temperature value is: " + latestTemperature.getTemperatureSensorValue()), userNotificationPreference);
+                                "KDG Alert. Stove is unattended and average temperature value is: " + sensorDataRepository.findAverageTemperature(time)), userNotificationPreference);
             }
         }
     }
