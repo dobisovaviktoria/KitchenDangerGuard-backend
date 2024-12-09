@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="55291e45-4673-408c-b0dd-f9917fd34d6a" name="Changes" comment="randomizing dummy data">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/controller/PageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/controller/PageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/service/SensorDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/service/SensorDataService.java" afterDir="false" />
     </list>
-    <list default="true" id="55291e45-4673-408c-b0dd-f9917fd34d6a" name="Changes" comment="randomizing dummy data" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,9 +52,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="com.intellij.jpb.JpaEntity" />
-        <option value="Interface" />
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -79,7 +75,7 @@
   <component name="GitLabMergeRequestsSettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;first&quot;: &quot;https://gitlab.com/kdg-ti/integration-2.1/24-25/team-7/Kitchen-Danger_Guard.git&quot;,
-    &quot;second&quot;: &quot;ae03898d-5bb8-4845-b2d4-f9d8e0c8c83f&quot;
+    &quot;second&quot;: &quot;1809698f-92d9-4b78-854c-b00ac820f868&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -198,6 +194,8 @@
       <workItem from="1732560886847" duration="49000" />
       <workItem from="1732705005866" duration="4501000" />
       <workItem from="1733123542496" duration="325000" />
+      <workItem from="1733577910869" duration="41000" />
+      <workItem from="1733687364383" duration="3850000" />
     </task>
     <task id="LOCAL-00001" summary="randomizing dummy data">
       <option name="closed" value="true" />
