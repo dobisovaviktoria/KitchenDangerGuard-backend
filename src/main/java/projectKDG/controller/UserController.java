@@ -58,7 +58,7 @@ public class UserController {
         if (userService.validateUser(email, password)) {
             // Store user in the session
             session.setAttribute("loggedInUser", userService.findByEmail(email).orElse(null));
-            return "redirect:/home";  // Redirect to a home page on success
+            return "redirect:/profile";  // Redirect to a profile page on success
         } else {
             model.addAttribute("error", "Invalid email or password");
             return "login";  // Return to the login page with an error message
@@ -69,15 +69,6 @@ public class UserController {
         session.invalidate();  // Invalidate the session
         return "redirect:/login";  // Redirect to login page
     }
-    @GetMapping("/profile")
-    public String profilePage(HttpSession session, Model model) {
-        User user = (User) session.getAttribute("loggedInUser");
-        if (user == null) {
-            return "redirect:/login"; // Redirect to login if not logged in
-        }
-        model.addAttribute("user", user);
-        return "profile";
-    }
 
     @GetMapping("/home")
     public String homePage(HttpSession session) {
@@ -86,6 +77,5 @@ public class UserController {
         }
         return "home";  // Render home page
     }
-
 
 }

@@ -10,14 +10,11 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 @Table(name = "user_data")
 public class User {
     @Id
-
-    @GeneratedValue(
-            strategy = SEQUENCE
-    )
-    @Column(
-            name = "user_id"
-    )
+    @GeneratedValue(strategy = SEQUENCE, generator = "user_sequence")
+    @SequenceGenerator(name = "user_sequence", sequenceName = "sequence_user", allocationSize = 1)
+    @Column(name = "user_id")
     private int userID;
+
 
     @Column(
             name = "user_name"

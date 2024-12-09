@@ -18,26 +18,59 @@
 
                     <div class="mb-3 w-50 mx-auto">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" name="email" id="name" th:field="*{userName}" placeholder="Username" required>
+                        <input type="text"
+                               class="form-control"
+                               id="name"
+                               th:field="*{userName}"
+                               placeholder="Username"
+                               required
+                               minlength="3">
                     </div>
+
                     <div class="mb-3 w-50 mx-auto">
                         <label for="age" class="form-label">Date of Birth</label>
-                        <input type="date" class="form-control" name="email" id="age" th:field="*{age}" placeholder="Age" required>
+                        <input type="date"
+                               class="form-control"
+                               id="age"
+                               th:field="*{age}"
+                               placeholder="Date of Birth"
+                               required
+                               max="${#dates.format(T(java.time.LocalDate).now(), 'yyyy-MM-dd')}">
                     </div>
                     <div class="mb-3 w-50 mx-auto">
-                        <label for="phone" class="form-label">Phone number</label>
-                        <input type="tel" class="form-control" name="email" id="phone" th:field="*{phone}" placeholder="Phone Number" required>
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel"
+                               class="form-control"
+                               id="phone"
+                               th:field="*{phone}"
+                               placeholder="Phone Number"
+                               required
+                               pattern="^\d{10,15}$"
+                               title="Phone number must be 10 to 15 digits long">
                     </div>
+
                     <!-- Email Field -->
                     <div class="mb-3 w-50 mx-auto">
                         <label for="email" class="form-label">Email Address</label>
-                        <input type="email" class="form-control" name="email" id="email" th:field="*{email}" placeholder="Email" required>
+                        <input type="email"
+                               class="form-control"
+                               name="email"
+                               id="email"
+                               th:field="*{email}"
+                               placeholder="Email"
+                               required>
                     </div>
 
                     <!-- Password Field -->
                     <div class="mb-3 w-50 mx-auto">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" name="password" id="password" th:field="*{password}" placeholder="Password" required>
+                        <input type="password"
+                               class="form-control"
+                               name="password"
+                               id="password"
+                               th:field="*{password}"
+                               placeholder="Password"
+                               required>
                     </div>
 
                     <!-- Submit Button -->
@@ -89,9 +122,12 @@
 
 <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
 <script>
-    function takeMeToLogin() {
-        alert("Your account has been created successfully.");
-    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const dobInput = document.getElementById('age');
+        if (dobInput) {
+            dobInput.max = new Date().toISOString().split('T')[0];
+        }
+    });
 </script>
 </body>
 </html>
