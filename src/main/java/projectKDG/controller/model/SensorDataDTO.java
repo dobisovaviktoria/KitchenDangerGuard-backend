@@ -4,13 +4,15 @@ public class SensorDataDTO {
 
     private boolean motionStatus;
     private float temperatureValue;
+    private int deviceId;
 
     // Constructors
     public SensorDataDTO() {}
 
-    public SensorDataDTO(boolean motionStatus, float temperatureValue) {
+    public SensorDataDTO(boolean motionStatus, float temperatureValue, int deviceId) {
         this.motionStatus = motionStatus;
         this.temperatureValue = temperatureValue;
+        this.deviceId = deviceId;
     }
 
     // Getters and Setters
@@ -28,5 +30,13 @@ public class SensorDataDTO {
 
     public void setTemperatureValue(float temperatureValue) {
         this.temperatureValue = temperatureValue;
+    }
+
+    public int getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(int deviceId) {
+        this.deviceId = deviceId;
     }
 }

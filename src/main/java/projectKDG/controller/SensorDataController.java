@@ -5,16 +5,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import projectKDG.controller.model.SensorDataDTO;
+//import projectKDG.domain.ArduinoDevice;
 import projectKDG.domain.SensorData;
 import projectKDG.service.SensorDataService;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@RestController
-@RequestMapping
+@Controller
 public class SensorDataController {
 
     private static final Logger log = LoggerFactory.getLogger(SensorDataController.class);
@@ -27,6 +28,7 @@ public class SensorDataController {
 
     // GET endpoint to retrieve all sensor data records
     @GetMapping("/sensor-data")
+    @ResponseBody
     public List<SensorData> getAllSensorData() {
         log.info("Fetching all sensor data...");
         return sensorDataService.getAllSensorData();
@@ -34,26 +36,30 @@ public class SensorDataController {
 
     // POST endpoint to receive sensor data from Arduino
     @PostMapping("/sensor-data")
+    @ResponseBody
     public ResponseEntity<String> receiveSensorData(@RequestBody SensorDataDTO sensorDataDto) {
         LocalDateTime now = LocalDateTime.now();
-        log.info("Received sensor data - Motion: {}, Temperature: {} at {}",
+        log.info("Received sensor data - Motion: {}, Temperature: {} at {} from Arduino {}.",
                 sensorDataDto.getMotionStatus(),
                 sensorDataDto.getTemperatureValue(),
+                sensorDataDto.getDeviceId(),
                 now);
 
         // Save sensor data to the database
         SensorData sensorData = new SensorData();
         sensorData.setMotionStatus(sensorDataDto.getMotionStatus());
         sensorData.setTemperatureValue(sensorDataDto.getTemperatureValue());
+        sensorData.setArduinoDevice(sensorDataDto.getDeviceId());
         sensorData.setTimestamp(now);
 
         sensorDataService.saveSensorData(sensorData);
 
         // Return a response back to Arduino
         return new ResponseEntity<>(
-                String.format("Data received - Motion: %s, Temperature: %.2f",
+                String.format("Data received - Motion: %s, Temperature: %.2f, Arduino: %d",
                         sensorData.getMotionStatus() ? "Detected" : "Not Detected",
-                        sensorData.getTemperatureValue()),
+                        sensorData.getTemperatureValue(),
+                        sensorData.getArduinoDevice()),
                 HttpStatus.CREATED
         );
     }

@@ -44,9 +44,9 @@ public class User {
     private String phone;
 
 
-    ////Relationships between arduinodevice and the user
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArduinoDevice arduinoDevice;
+//    ////Relationships between arduinodevice and the user
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private ArduinoDevice arduinoDevice;
 
     public User(String phone, String email, String password, LocalDate age, String userName) {
         this.phone = phone;
@@ -99,11 +99,11 @@ public class User {
         this.phone = phone;
     }
 
-    public ArduinoDevice getArduinoDevice() {
-        return arduinoDevice;
-    }
-
-    public void setArduinoDevice(ArduinoDevice arduinoDevice) {
-        this.arduinoDevice = arduinoDevice;
-    }
+//    public ArduinoDevice getArduinoDevice() {
+//        return arduinoDevice;
+//    }
+//
+//    public void setArduinoDevice(ArduinoDevice arduinoDevice) {
+//        this.arduinoDevice = arduinoDevice;
+//    }
 }
