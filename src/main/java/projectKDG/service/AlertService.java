@@ -48,7 +48,7 @@ public class AlertService {
         LocalDateTime time = LocalDateTime.now().minusMinutes(10);
         List<SensorData> latestSensorData = sensorDataRepository.findRecentSensorData(time);
         if (latestSensorData != null) {
-            if (sensorDataRepository.areAllMotionStatusesFalse(time) &&
+            if (sensorDataRepository.areAllMotionStatusesFalse(time) && sensorDataRepository.findAverageTemperature(time) != null &&
                     sensorDataRepository.findAverageTemperature(time) > offTemperature) {
                 log.info("Sending alert notification");
                 notificationContext.executeStrategy(
