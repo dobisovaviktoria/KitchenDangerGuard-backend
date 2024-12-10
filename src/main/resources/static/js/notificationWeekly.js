@@ -1,39 +1,39 @@
 document.addEventListener("DOMContentLoaded", () => {
     const datePicker = document.getElementById("datePicker");
-    const hourlyChartCanvas = document.getElementById("hourlyNotificationChart");
+    const weeklyChartCanvas = document.getElementById("weeklyNotificationChart");
 
-    // Initialize the chart variable
-    let hourlyChart;
+    let weeklyChart; // Variable to hold the chart instance
 
-    // Function to fetch data from the API
-    async function fetchHourlyNotifications(date) {
+    // Function to fetch weekly notifications
+    async function fetchWeeklyNotifications(userId, date) {
         try {
-            const response = await fetch(`/api/notifications/hourly?date=${date}`);
+            const response = await fetch(`/api/notifications/weekly?userId=${userId}&date=${date}`);
             if (!response.ok) {
                 throw new Error(`Failed to fetch data: ${response.statusText}`);
             }
             return await response.json();
         } catch (error) {
-            console.error("Error fetching notification data:", error);
+            console.error("Error fetching weekly notification data:", error);
             throw error;
         }
     }
 
-    // Function to render the chart
-    async function renderHourlyChart(date) {
+    // Function to render the weekly chart
+    async function renderWeeklyChart(userId, date) {
         try {
-            const data = await fetchHourlyNotifications(date);
+            const data = await fetchWeeklyNotifications(userId, date);
 
-            const labels = Object.keys(data); // Hours (e.g., "00:00", "01:00", etc.)
-            const counts = Object.values(data); // Notification counts for each hour
+            // Extract labels (days) and data (counts)
+            const labels = Object.keys(data); // Days of the week
+            const counts = Object.values(data); // Notification counts
 
             // Destroy the existing chart instance if it exists
-            if (hourlyChart) {
-                hourlyChart.destroy();
+            if (weeklyChart) {
+                weeklyChart.destroy();
             }
 
-            // Create a new chart instance for a line graph
-            hourlyChart = new Chart(hourlyChartCanvas, {
+            // Create a new chart instance
+            weeklyChart = new Chart(weeklyChartCanvas, {
                 type: "line",
                 data: {
                     labels: labels,datasets: [
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         x: {
                             title: {
                                 display: true,
-                                text: "Hour",
+                                text: "Day of the Week",
                             },
                         },
                         y: {
@@ -84,20 +84,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
             });
         } catch (error) {
-            console.error("Error rendering chart:", error);
+            console.error("Error rendering weekly chart:", error);
         }
     }
 
     // Event listener for the date picker
-    datePicker.addEventListener("change", (event) => {
-        const selectedDate = event.target.value;
+    datePicker.addEventListener("change", () => {
+        const selectedDate = datePicker.value;
         if (selectedDate) {
-            renderHourlyChart(selectedDate);
+            const userId = 1; // Replace with the actual user ID
+            renderWeeklyChart(userId, selectedDate);
         }
     });
 
     // Default chart rendering for today's date
     const today = new Date().toISOString().split("T")[0];
     datePicker.value = today;
-    renderHourlyChart(today);
+    const userId = 1; // Replace with the actual user ID
+    renderWeeklyChart(userId, today);
 });

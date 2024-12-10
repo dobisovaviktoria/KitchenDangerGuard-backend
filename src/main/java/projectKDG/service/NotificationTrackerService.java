@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class NotificationTrackerService {
@@ -54,4 +55,28 @@ public class NotificationTrackerService {
 
         return notificationsPerHour;
     }
-}
+
+    // Method to calculate the start and end of the week
+    // This method returns a Map where the key is the day of the week (e.g., "Monday", "Tuesday", etc.)
+    // and the value is the count of notifications for that day.
+    public Map<LocalDate, Long> getWeeklyNotifications(int userId, LocalDate selectedDate) {
+        // Subtract 6 days from the selected date to get the start of the week (Monday).
+        LocalDateTime startOfWeek = selectedDate.minusDays(6).atStartOfDay(); // Start of the week
+
+        // The selected date is already the end of the week (Sunday), set it to 23:59:59 for the end of the day.
+        LocalDateTime endOfWeek = selectedDate.atTime(23, 59, 59); // End of the week
+
+        // Fetch notifications for the week
+        List<NotificationTracker> notifications = notificationTrackerRepository.findNotificationsForWeek(userId, startOfWeek, endOfWeek);
+
+        // Group notifications by date and count them
+        Map<LocalDate, Long> dailyNotifications = notifications.stream()
+                .collect(Collectors.groupingBy(
+                        notification -> notification.getSentAt().toLocalDate(), // Group by date
+                        Collectors.counting() // Count the notifications for each date
+                ));
+
+        // Return the map with the count of notifications per date
+        return dailyNotifications;
+    }}
+

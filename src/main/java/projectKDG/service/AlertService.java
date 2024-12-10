@@ -55,7 +55,7 @@ public class AlertService {
             if (sensorDataRepository.areAllMotionStatusesFalse(time) && sensorDataRepository.findAverageTemperature(time) != null &&
                     sensorDataRepository.findAverageTemperature(time) > offTemperature) {
                 log.info("Sending alert notification");
-
+//From the data , we know device id and then the user ... to send an alert.
                 for (SensorData data : latestSensorData) {
                     ArduinoDevice arduinoDevice = data.getArduinoDevice(); // Fetch the ArduinoDevice
                     if (arduinoDevice != null) {
@@ -79,28 +79,3 @@ public class AlertService {
     }
 }
 
-//@Scheduled(fixedRate = 10000)
-//public void checkForAlert() {
-//    LocalDateTime time = LocalDateTime.now().minusMinutes(10);
-//    List<SensorData> latestSensorData = sensorDataRepository.findRecentSensorData(time);
-//
-//    if (latestSensorData != null && !latestSensorData.isEmpty()) {
-//        Double averageTemperature = sensorDataRepository.findAverageTemperature(time);
-//
-//        if (sensorDataRepository.areAllMotionStatusesFalse(time) &&
-//                averageTemperature != null &&
-//                averageTemperature > offTemperature) {
-//
-//            log.info("Sending alert notifications");
-//
-
-//                    // Send the notification using the notification strategy
-//                    notificationContext.executeStrategy(
-//                            new Notification(user.getEmail(),
-//                                    "KDG Alert. Stove is unattended and average temperature value is: " + averageTemperature),
-//                            userNotificationPreference);
-//                }
-//            }
-//        }
-//    }
-//}

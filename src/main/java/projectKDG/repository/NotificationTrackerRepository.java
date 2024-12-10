@@ -8,6 +8,7 @@ import projectKDG.domain.NotificationTracker;
 import projectKDG.domain.User;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -18,9 +19,21 @@ public interface NotificationTrackerRepository extends JpaRepository<Notificatio
             SELECT EXTRACT(HOUR FROM nt.sentAt) AS hour, COUNT(nt) AS count
             FROM NotificationTracker nt
             WHERE DATE(nt.sentAt) = :selectedDate
+            AND nt.user.userID = :userId
             GROUP BY EXTRACT(HOUR FROM nt.sentAt)
             ORDER BY hour
             """)
+
     List<Object[]> countNotificationsPerHour(@Param("selectedDate") LocalDate selectedDate);
-}
+
+
+    @Query("SELECT n FROM NotificationTracker n WHERE n.user.userID = :userId AND n.sentAt BETWEEN :startOfWeek AND :endOfWeek")
+    List<NotificationTracker> findNotificationsForWeek(
+            @Param("userId") int userId,
+            @Param("startOfWeek") LocalDateTime startOfWeek,
+            @Param("endOfWeek") LocalDateTime endOfWeek
+    );}
+
+
+
 

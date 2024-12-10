@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script defer th:src="@{/js/duration.js}"></script>
     <script defer th:src="@{/js/notification.js}"></script>
+    <script defer th:src="@{/js/notificationWeekly.js}"></script>
     <script>
         // Pass userId to the JavaScript context
         const userId = [[${user.userID}]];
@@ -43,7 +44,15 @@
         <h3>Hourly Notifications Received</h3>
         <canvas id="hourlyNotificationChart"></canvas>
     </div>
+
+    <div>
+        <h3>Weekly Notifications</h3>
+        <div id="weeklyCalendar" class="calendar-container"></div>
+        <canvas id="weeklyNotificationChart" ></canvas>
+    </div>
 </div>
+
+
 
 <div th:insert="fragments/footer.html"></div>
 </body>
