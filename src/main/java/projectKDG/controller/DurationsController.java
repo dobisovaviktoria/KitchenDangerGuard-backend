@@ -24,4 +24,9 @@ public class DurationsController {
         LocalDate selectedDate = LocalDate.parse(date);
         return sensorDataService.getStoveOnDurationsPerHour(selectedDate, userId);
     }
+
+    @GetMapping("/monthly-stove-durations")
+    public Map<String, Double> getMonthlyStoveDurations(@RequestParam int month, @RequestParam int year, @RequestParam int userId) {
+        return sensorDataService.getMonthlyStoveUsageAverages(month, year, userId);
+    }
 }

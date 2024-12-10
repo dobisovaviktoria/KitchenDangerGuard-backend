@@ -70,4 +70,26 @@ public class SensorDataService {
 
         return hourlyDurations;
     }
+
+    public Map<String, Double> getMonthlyStoveUsageAverages(int month, int year, int userId) {
+        List<Object[]> queryResults = sensorDataRepository.findMonthlyStoveDurationsPerHour(month, year, userId);
+        Map<String, Double> hourlyAverages = new LinkedHashMap<>();
+
+        // Initialize all hours with 0 average
+        for (int i = 0; i < 24; i++) {
+            String hour = String.format("%02d:00", i);
+            hourlyAverages.put(hour, 0.0);
+        }
+
+        // Populate averages from query results
+        for (Object[] row : queryResults) {
+            Integer hour = (Integer) row[0];
+            Double avgUsage = (Double) row[1];
+
+            String formattedHour = String.format("%02d:00", hour);
+            hourlyAverages.put(formattedHour, avgUsage);
+        }
+
+        return hourlyAverages;
+    }
 }

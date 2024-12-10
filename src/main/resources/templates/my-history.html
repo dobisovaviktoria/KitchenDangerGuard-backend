@@ -16,29 +16,19 @@
 <div th:insert="fragments/navbar.html"></div>
 <h1>Welcome, <span th:text="${user.userName}">Guest</span>!</h1>
 <h2>My History</h2>
-<table>
-    <thead>
-    <tr>
-        <th>Timestamp</th>
-        <th>Motion Status</th>
-        <th>Temperature Value</th>
-    </tr>
-    </thead>
-    <tbody>
-    <th:block th:each="sensorData : ${sensorDataList}">
-        <tr>
-            <td th:text="${sensorData.timestamp}"></td>
-            <td th:text="${sensorData.motionStatus ? 'Detected' : 'Not Detected'}"></td>
-            <td th:text="${sensorData.temperatureValue}"></td>
-        </tr>
-    </th:block>
-    </tbody>
-</table>
 
-<h1>Daily Stove Duration History</h1>
 <label for="datePicker">Select Date:</label>
 <input type="date" id="datePicker">
-<canvas id="stoveDurationChart"></canvas>
+
+<div>
+    <h3>Daily Stove Usage</h3>
+    <canvas id="dailyStoveDurationChart"></canvas>
+</div>
+
+<div>
+    <h3>Monthly Stove Usage Average</h3>
+    <canvas id="monthlyStoveDurationChart"></canvas>
+</div>
 
 <div th:insert="fragments/footer.html"></div>
 </body>

@@ -1,8 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Function to fetch data from the server
-    async function fetchData(date, userId) {
-        console.log("Fetching data for date:", date);
-        const response = await fetch(`/api/history/stove-durations?date=${date}&userId=${userId}`);
+    async function fetchData(date, userId, endpoint, chartType) {
+        const url = chartType === 'daily'
+            ? `${endpoint}?date=${date}&userId=${userId}`
+            : `${endpoint}?month=${new Date(date).getMonth() + 1}&year=${new Date(date).getFullYear()}&userId=${userId}`;
+
+        console.log("Fetching data from:", url);
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error("Failed to fetch data");
         }
@@ -12,9 +16,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Function to render the chart
-    async function renderChart(date, userId) {
+    async function renderChart(date, userId, chartType = 'daily') {
         try {
-            const data = await fetchData(date, userId);
+            const endpoint = chartType === 'daily' ? '/api/history/stove-durations' : '/api/history/monthly-stove-durations';
+            const data = await fetchData(date, userId, endpoint, chartType);
             if (!data || typeof data !== 'object') {
                 throw new Error("Unexpected data format");
             }
@@ -22,23 +27,23 @@ document.addEventListener("DOMContentLoaded", function() {
             const labels = Object.keys(data);
             const values = Object.values(data);
 
-            const ctx = document.getElementById('stoveDurationChart').getContext('2d');
+            const ctx = document.getElementById(`${chartType}StoveDurationChart`).getContext('2d');
 
             // Destroy existing chart if it exists
-            if (window.stoveDurationChart instanceof Chart) {
-                window.stoveDurationChart.destroy();
+            if (window[`${chartType}StoveDurationChart`] instanceof Chart) {
+                window[`${chartType}StoveDurationChart`].destroy();
             }
 
             // Create the chart
-            window.stoveDurationChart = new Chart(ctx, {
+            window[`${chartType}StoveDurationChart`] = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Stove On Duration',
+                        label: chartType === 'daily' ? 'Stove On Duration' : 'Average Stove Usage',
                         data: values,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: chartType === 'daily' ? 'rgba(255, 99, 132, 0.2)' : 'rgba(54, 162, 235, 0.2)',
+                        borderColor: chartType === 'daily' ? 'rgba(255, 99, 132, 1)' : 'rgba(54, 162, 235, 1)',
                         borderWidth: 1
                     }]
                 },
@@ -50,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         },
                         y: {
                             beginAtZero: true,
-                            title: { display: true, text: 'Duration' }
+                            title: { display: true, text: chartType === 'daily' ? 'Duration' : 'Average Usage' }
                         }
                     }
                 }
@@ -66,11 +71,13 @@ document.addEventListener("DOMContentLoaded", function() {
     // Add an event listener for the date picker
     document.getElementById('datePicker').addEventListener('change', (event) => {
         const selectedDate = event.target.value;
-        renderChart(selectedDate, userId);
+        renderChart(selectedDate, userId, 'daily');
+        renderChart(selectedDate, userId, 'monthly');
     });
 
-    // Initialize the chart with today's date
+    // Initialize the charts with today's date
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('datePicker').value = today;
-    renderChart(today, userId);
+    renderChart(today, userId, 'daily');
+    renderChart(today, userId, 'monthly');
 });
