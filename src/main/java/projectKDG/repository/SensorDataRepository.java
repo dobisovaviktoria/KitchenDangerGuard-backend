@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import projectKDG.domain.SensorData;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,4 +24,21 @@ public interface SensorDataRepository extends JpaRepository<SensorData, Integer>
             "JOIN s.arduinoDevice a " +
             "WHERE a.user.userID = :userId")
     List<SensorData> findByUserId(@Param("userId") int userId);
+
+    @Query("""
+    SELECT 
+        CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER) AS hour, 
+        COUNT(s.id) AS recordCount
+    FROM SensorData s
+    JOIN s.arduinoDevice a
+    WHERE DATE(s.timestamp) = :selectedDate 
+      AND s.temperatureValue > 20
+      AND a.user.userID = :userId
+    GROUP BY CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER)
+    ORDER BY CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER)
+""")
+    List<Object[]> findStoveOnDurationsPerHour(
+            @Param("selectedDate") LocalDate selectedDate,
+            @Param("userId") int userId
+    );
 }

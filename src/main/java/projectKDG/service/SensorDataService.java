@@ -8,7 +8,10 @@ import projectKDG.service.processors.CompositeDataProcessor;
 import projectKDG.service.processors.MotionDataProcessor;
 import projectKDG.service.processors.TemperatureDataProcessor;
 
+import java.time.LocalDate;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SensorDataService {
@@ -44,5 +47,27 @@ public class SensorDataService {
 
     public List<SensorData> getSensorDataByUserId(int userId) {
         return sensorDataRepository.findByUserId(userId);
+    }
+
+    public Map<String, Integer> getStoveOnDurationsPerHour(LocalDate selectedDate, int userId) {
+        List<Object[]> queryResults = sensorDataRepository.findStoveOnDurationsPerHour(selectedDate, userId);
+        Map<String, Integer> hourlyDurations = new LinkedHashMap<>();
+
+        // Initialize all hours with 0 duration
+        for (int i = 0; i < 24; i++) {
+            String hour = String.format("%02d:00", i);
+            hourlyDurations.put(hour, 0);
+        }
+
+        // Populate durations from query results
+        for (Object[] row : queryResults) {
+            Integer hour = (Integer) row[0];
+            Integer duration = ((Number) row[1]).intValue();
+
+            String formattedHour = String.format("%02d:00", hour);
+            hourlyDurations.put(formattedHour, duration);
+        }
+
+        return hourlyDurations;
     }
 }

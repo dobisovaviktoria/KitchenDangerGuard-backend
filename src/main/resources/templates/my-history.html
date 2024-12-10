@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My History</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script th:src="@{/js/duration.js}"></script>
+    <script>
+        // Pass userId to the JavaScript context
+        const userId = [[${user.userID}]];
+    </script>
 </head>
 <body>
-<h1>Welcome, ${user.userName}!</h1>
+<div th:insert="fragments/navbar.html"></div>
+<h1>Welcome, <span th:text="${user.userName}">Guest</span>!</h1>
 <h2>My History</h2>
 <table>
     <thead>
@@ -24,5 +34,12 @@
     </th:block>
     </tbody>
 </table>
+
+<h1>Daily Stove Duration History</h1>
+<label for="datePicker">Select Date:</label>
+<input type="date" id="datePicker">
+<canvas id="stoveDurationChart"></canvas>
+
+<div th:insert="fragments/footer.html"></div>
 </body>
 </html>
