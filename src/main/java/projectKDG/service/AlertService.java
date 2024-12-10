@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import projectKDG.domain.ArduinoDevice;
 import projectKDG.domain.NotificationPreference;
 import projectKDG.domain.SensorData;
+import projectKDG.domain.User;
 import projectKDG.repository.SensorDataRepository;
 import projectKDG.service.notification.*;
 
@@ -19,7 +21,7 @@ public class AlertService {
 
     private static final Logger log = LoggerFactory.getLogger(AlertService.class);
 
-//    private final MotionRepository motionRepository;
+    //    private final MotionRepository motionRepository;
 //    private final TemperatureRepository temperatureRepository;
     private final SensorDataRepository sensorDataRepository;
     private final NotificationContext notificationContext;
@@ -29,6 +31,7 @@ public class AlertService {
 
     private final int offTemperature = 40;  // Configurable threshold
     private final int everyMinute = 10;    // Configurable duration
+    private final NotificationTrackerService notificationTrackerService;
 
     // Constructor injection
     public AlertService(
@@ -36,11 +39,12 @@ public class AlertService {
             //@Qualifier("compositeNotificationStrategy") NotificationStrategy notificationStrategy,
             NotificationContext notificationContext,
             @Value("${kdg.notification-preference}") NotificationPreference userNotificationPreference,
-            @Value("${kdg.notification-destination}") String userNotificationDestination) {
+            @Value("${kdg.notification-destination}") String userNotificationDestination, NotificationTrackerService notificationTrackerService) {
         this.sensorDataRepository = sensorDataRepository;
         this.notificationContext = notificationContext;
         this.userNotificationPreference = userNotificationPreference;
         this.userNotificationDestination = userNotificationDestination;
+        this.notificationTrackerService = notificationTrackerService;
     }
 
     @Scheduled(fixedRate = 10000)
@@ -51,10 +55,52 @@ public class AlertService {
             if (sensorDataRepository.areAllMotionStatusesFalse(time) && sensorDataRepository.findAverageTemperature(time) != null &&
                     sensorDataRepository.findAverageTemperature(time) > offTemperature) {
                 log.info("Sending alert notification");
-                notificationContext.executeStrategy(
-                        new Notification(userNotificationDestination,
-                                "KDG Alert. Stove is unattended and average temperature value is: " + sensorDataRepository.findAverageTemperature(time)), userNotificationPreference);
+
+                for (SensorData data : latestSensorData) {
+                    ArduinoDevice arduinoDevice = data.getArduinoDevice(); // Fetch the ArduinoDevice
+                    if (arduinoDevice != null) {
+                        User user = arduinoDevice.getUser(); // Fetch the User from ArduinoDevice
+                        if (user != null) {
+                            int userId = user.getUserID(); // Extract the userId
+
+                            // Create a notification record
+                            notificationTrackerService.createNotification(userId);
+
+                            notificationContext.executeStrategy(
+                                    new Notification(userNotificationDestination,
+                                            "KDG Alert. Stove is unattended and average temperature value is: " +
+                                                    sensorDataRepository.findAverageTemperature(time)), userNotificationPreference);
+
+                        }
+                    }
+                }
             }
         }
     }
 }
+
+//@Scheduled(fixedRate = 10000)
+//public void checkForAlert() {
+//    LocalDateTime time = LocalDateTime.now().minusMinutes(10);
+//    List<SensorData> latestSensorData = sensorDataRepository.findRecentSensorData(time);
+//
+//    if (latestSensorData != null && !latestSensorData.isEmpty()) {
+//        Double averageTemperature = sensorDataRepository.findAverageTemperature(time);
+//
+//        if (sensorDataRepository.areAllMotionStatusesFalse(time) &&
+//                averageTemperature != null &&
+//                averageTemperature > offTemperature) {
+//
+//            log.info("Sending alert notifications");
+//
+
+//                    // Send the notification using the notification strategy
+//                    notificationContext.executeStrategy(
+//                            new Notification(user.getEmail(),
+//                                    "KDG Alert. Stove is unattended and average temperature value is: " + averageTemperature),
+//                            userNotificationPreference);
+//                }
+//            }
+//        }
+//    }
+//}

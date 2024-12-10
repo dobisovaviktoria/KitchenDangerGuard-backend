@@ -2,6 +2,8 @@ package projectKDG.domain;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
@@ -28,6 +30,10 @@ public class User {
 
     @Column(name = "phone")
     private String phone;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<NotificationTracker> notifications = new ArrayList<>();
+
 
     // Constructors
     public User(String phone, String email, String password, LocalDate age, String userName) {
