@@ -6,7 +6,8 @@
     <title>My History</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script th:src="@{/js/duration.js}"></script>
+    <script defer th:src="@{/js/duration.js}"></script>
+    <script defer th:src="@{/js/notification.js}"></script>
     <script>
         // Pass userId to the JavaScript context
         const userId = [[${user.userID}]];
@@ -14,20 +15,34 @@
 </head>
 <body>
 <div th:insert="fragments/navbar.html"></div>
-<h1>Welcome, <span th:text="${user.userName}">Guest</span>!</h1>
-<h2>My History</h2>
 
-<label for="datePicker">Select Date:</label>
-<input type="date" id="datePicker">
+<div class="container mt-4">
+    <h1>Welcome, <span th:text="${user.userName}">Guest</span>!</h1>
+    <h2>My History</h2>
 
-<div>
-    <h3>Daily Stove Usage</h3>
-    <canvas id="dailyStoveDurationChart"></canvas>
-</div>
+    <!-- Date Picker Section -->
+    <div class="mb-4">
+        <label for="datePicker" class="form-label">Select Date:</label>
+        <input type="date" id="datePicker" class="form-control">
+    </div>
 
-<div>
-    <h3>Monthly Stove Usage Average</h3>
-    <canvas id="monthlyStoveDurationChart"></canvas>
+    <!-- Daily Stove Usage Section -->
+    <div class="mb-5">
+        <h3>Daily Stove Usage</h3>
+        <canvas id="dailyStoveDurationChart"></canvas>
+    </div>
+
+    <!-- Monthly Stove Usage Section -->
+    <div class="mb-5">
+        <h3>Monthly Stove Usage Average</h3>
+        <canvas id="monthlyStoveDurationChart"></canvas>
+    </div>
+
+    <!-- Hourly Notifications Section -->
+    <div class="mb-5">
+        <h3>Hourly Notifications Received</h3>
+        <canvas id="hourlyNotificationChart"></canvas>
+    </div>
 </div>
 
 <div th:insert="fragments/footer.html"></div>
