@@ -7,6 +7,7 @@ import projectKDG.domain.Temperature;
 import java.util.List;
 import java.util.Optional;
 
+@Deprecated
 public interface TemperatureRepository extends JpaRepository<Temperature, Integer> {
     Optional<Temperature> findTemperatureByTemperatureSensorId(Integer temperatureSensorId);
 

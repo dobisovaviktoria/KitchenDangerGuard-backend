@@ -5,6 +5,7 @@
 
     import static jakarta.persistence.GenerationType.SEQUENCE;
 
+    @Deprecated
     @Entity
     @Table(name = "motion_data")
     public class Motion {

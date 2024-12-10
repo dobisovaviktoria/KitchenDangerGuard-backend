@@ -1,5 +1,7 @@
 package projectKDG.controller.model;
 
+
+@Deprecated
 public class TemperatureDTO {
     float temperatureValue;
 

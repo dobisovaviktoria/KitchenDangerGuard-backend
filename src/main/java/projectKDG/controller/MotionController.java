@@ -13,6 +13,7 @@ import projectKDG.service.MotionService;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Deprecated
 @Controller
 @RequestMapping()
 public class    MotionController {

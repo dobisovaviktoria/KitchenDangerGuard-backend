@@ -14,6 +14,7 @@ import projectKDG.service.TemperatureService;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Deprecated
 @Controller
 public class TemperatureController {
 

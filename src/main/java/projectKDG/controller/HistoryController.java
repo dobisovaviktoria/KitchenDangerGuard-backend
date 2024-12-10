@@ -7,6 +7,7 @@ import projectKDG.service.MotionService;
 import projectKDG.service.StoveService;
 import projectKDG.service.TemperatureService;
 
+@Deprecated
 @Controller
 public class HistoryController {
 

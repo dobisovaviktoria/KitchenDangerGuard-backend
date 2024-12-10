@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
+@Deprecated
 @Repository
 public interface MotionRepository
         extends JpaRepository<Motion, Integer> {

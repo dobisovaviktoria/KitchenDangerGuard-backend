@@ -4,6 +4,8 @@ package projectKDG.domain;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+
+@Deprecated
 @Entity
 @Table(name = "temperature_data")
 public class Temperature {

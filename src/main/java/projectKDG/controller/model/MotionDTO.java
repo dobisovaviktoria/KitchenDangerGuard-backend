@@ -1,5 +1,6 @@
 package projectKDG.controller.model;
 
+@Deprecated
 public class MotionDTO {
     private boolean motionStatus;
 

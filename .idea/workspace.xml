@@ -4,9 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55291e45-4673-408c-b0dd-f9917fd34d6a" name="Changes" comment="Data can now get filtered by user id, which is connected to arduino id;">
+    <list default="true" id="55291e45-4673-408c-b0dd-f9917fd34d6a" name="Changes" comment="Small change to log in button; now changes to log out when logged in;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/controller/HistoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/controller/MotionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/controller/MotionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/controller/TemperatureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/controller/TemperatureController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/controller/model/MotionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/controller/model/MotionDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/controller/model/TemperatureDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/controller/model/TemperatureDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/domain/Motion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/domain/Motion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/domain/Temperature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/domain/Temperature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/repository/MotionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/repository/MotionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/repository/NotificationTrackerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/repository/NotificationTrackerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/repository/TemperatureRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/repository/TemperatureRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/service/notification/WebNotifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/service/notification/WebNotifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +212,7 @@
       <workItem from="1733817651938" duration="246000" />
       <workItem from="1733819887281" duration="315000" />
       <workItem from="1733822421319" duration="884000" />
-      <workItem from="1733830701375" duration="757000" />
+      <workItem from="1733830701375" duration="5427000" />
     </task>
     <task id="LOCAL-00001" summary="randomizing dummy data">
       <option name="closed" value="true" />
@@ -226,7 +238,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733817881630</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Small change to log in button; now changes to log out when logged in;">
+      <option name="closed" value="true" />
+      <created>1733831815133</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733831815133</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,6 +267,7 @@
     <MESSAGE value="randomizing dummy data" />
     <MESSAGE value="Removed excess controller class;&#10;Made homepage Visible when not logged in;" />
     <MESSAGE value="Data can now get filtered by user id, which is connected to arduino id;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Data can now get filtered by user id, which is connected to arduino id;" />
+    <MESSAGE value="Small change to log in button; now changes to log out when logged in;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small change to log in button; now changes to log out when logged in;" />
   </component>
 </project>
