@@ -41,4 +41,8 @@ public class SensorDataService {
     public List<SensorData> getAllSensorData() {
         return sensorDataRepository.findAll();
     }
+
+    public List<SensorData> getSensorDataByUserId(int userId) {
+        return sensorDataRepository.findByUserId(userId);
+    }
 }

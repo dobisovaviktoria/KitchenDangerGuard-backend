@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55291e45-4673-408c-b0dd-f9917fd34d6a" name="Changes" comment="randomizing dummy data">
+    <list default="true" id="55291e45-4673-408c-b0dd-f9917fd34d6a" name="Changes" comment="Removed excess controller class;&#10;Made homepage Visible when not logged in;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/controller/PageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/controller/MyHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/controller/MyHistoryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/repository/SensorDataRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/repository/SensorDataRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projectKDG/service/SensorDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projectKDG/service/SensorDataService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/my-history.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/my-history.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +201,7 @@
       <workItem from="1733123542496" duration="325000" />
       <workItem from="1733577910869" duration="41000" />
       <workItem from="1733687364383" duration="3850000" />
-      <workItem from="1733755430433" duration="337000" />
+      <workItem from="1733755430433" duration="2101000" />
     </task>
     <task id="LOCAL-00001" summary="randomizing dummy data">
       <option name="closed" value="true" />
@@ -207,7 +211,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732526918888</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Removed excess controller class;&#10;Made homepage Visible when not logged in;">
+      <option name="closed" value="true" />
+      <created>1733755802222</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1733755802222</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,6 +238,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="randomizing dummy data" />
-    <option name="LAST_COMMIT_MESSAGE" value="randomizing dummy data" />
+    <MESSAGE value="Removed excess controller class;&#10;Made homepage Visible when not logged in;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed excess controller class;&#10;Made homepage Visible when not logged in;" />
   </component>
 </project>

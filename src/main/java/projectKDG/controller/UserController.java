@@ -72,7 +72,7 @@ public class UserController {
 
     @GetMapping("/home")
     public String homePage(HttpSession session) {
-        return "home";  // Render home page
+        return "home";
     }
 
 }

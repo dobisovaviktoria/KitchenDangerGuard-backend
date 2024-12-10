@@ -1,7 +1,6 @@
 package projectKDG.domain;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
@@ -15,36 +14,22 @@ public class User {
     @Column(name = "user_id")
     private int userID;
 
-
-    @Column(
-            name = "user_name"
-    )
+    @Column(name = "user_name")
     private String userName;
 
-    @Column(
-            name = "age"
-    )
+    @Column(name = "age")
     private LocalDate age;
 
-    @Column(
-            name = "password"
-    )
+    @Column(name = "password")
     private String password;
-    @Column(
-            name = "email"
-    )
+
+    @Column(name = "email")
     private String email;
 
-    @Column(
-            name = "phone"
-    )
+    @Column(name = "phone")
     private String phone;
 
-
-//    ////Relationships between arduinodevice and the user
-//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private ArduinoDevice arduinoDevice;
-
+    // Constructors
     public User(String phone, String email, String password, LocalDate age, String userName) {
         this.phone = phone;
         this.email = email;
@@ -53,7 +38,15 @@ public class User {
         this.userName = userName;
     }
 
-    public User() {
+    public User() {}
+
+    // Getters and Setters
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public LocalDate getAge() {
@@ -95,12 +88,4 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-//    public ArduinoDevice getArduinoDevice() {
-//        return arduinoDevice;
-//    }
-//
-//    public void setArduinoDevice(ArduinoDevice arduinoDevice) {
-//        this.arduinoDevice = arduinoDevice;
-//    }
 }
