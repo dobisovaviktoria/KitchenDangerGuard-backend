@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let hourlyChart;
 
     // Function to fetch data from the API
-    async function fetchHourlyNotifications(date) {
+    async function fetchHourlyNotifications(userId,date) {
         try {
-            const response = await fetch(`/api/notifications/hourly?date=${date}`);
+            const response = await fetch(`/api/notifications/hourly?userId=${userId}&date=${date}`);
             if (!response.ok) {
                 throw new Error(`Failed to fetch data: ${response.statusText}`);
             }
@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Function to render the chart
-    async function renderHourlyChart(date) {
+    async function renderHourlyChart(userId,date) {
         try {
-            const data = await fetchHourlyNotifications(date);
+            const data = await fetchHourlyNotifications(userId,date);
 
             const labels = Object.keys(data); // Hours (e.g., "00:00", "01:00", etc.)
             const counts = Object.values(data); // Notification counts for each hour
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 data: {
                     labels: labels,datasets: [
                         {
-                            label: "Notifications Per Day",
+                            label: "Notifications Per hour",
                             data: counts,
                             borderColor: "rgba(54, 162, 235, 1)", // Vibrant blue for the line
                             backgroundColor: "rgba(54, 162, 235, 0.2)", // Light translucent blue fill
@@ -90,14 +90,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Event listener for the date picker
     datePicker.addEventListener("change", (event) => {
-        const selectedDate = event.target.value;
-        if (selectedDate) {
-            renderHourlyChart(selectedDate);
-        }
+        const selectedDate = datePicker.value;
+
+            renderHourlyChart(userId,selectedDate);
+
     });
 
     // Default chart rendering for today's date
     const today = new Date().toISOString().split("T")[0];
     datePicker.value = today;
-    renderHourlyChart(today);
+    renderHourlyChart(userId,today);
 });

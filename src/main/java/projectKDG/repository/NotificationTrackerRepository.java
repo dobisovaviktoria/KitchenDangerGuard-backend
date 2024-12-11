@@ -24,7 +24,8 @@ public interface NotificationTrackerRepository extends JpaRepository<Notificatio
             ORDER BY hour
             """)
 
-    List<Object[]> countNotificationsPerHour(@Param("selectedDate") LocalDate selectedDate);
+    List<Object[]> countNotificationsPerHour(@Param("userId") int userId,
+                                             @Param("selectedDate") LocalDate selectedDate);
 
 
     @Query("SELECT n FROM NotificationTracker n WHERE n.user.userID = :userId AND n.sentAt BETWEEN :startOfWeek AND :endOfWeek")

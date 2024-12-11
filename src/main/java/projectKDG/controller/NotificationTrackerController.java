@@ -29,11 +29,13 @@ public class NotificationTrackerController {
     }
 
     @GetMapping("/hourly")
-    public ResponseEntity<Map<String, Integer>> getNotificationsPerHour(@RequestParam String date) {
+    public ResponseEntity<Map<String, Integer>> getNotificationsPerHour(
+            @RequestParam int userId,
+            @RequestParam String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate selectedDate = LocalDate.parse(date, formatter);
 
-        Map<String, Integer> notificationsPerHour = notificationeTrackerService.getNotificationsPerHour(selectedDate);
+        Map<String, Integer> notificationsPerHour = notificationeTrackerService.getNotificationsPerHour(userId,selectedDate);
 
         return ResponseEntity.ok(notificationsPerHour);
     }

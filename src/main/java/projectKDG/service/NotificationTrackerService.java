@@ -34,8 +34,8 @@ public class NotificationTrackerService {
         return notificationTrackerRepository.save(notification);
     }
 
-    public Map<String, Integer> getNotificationsPerHour(LocalDate selectedDate) {
-        List<Object[]> queryResults = notificationTrackerRepository.countNotificationsPerHour(selectedDate);
+    public Map<String, Integer> getNotificationsPerHour(int userId,LocalDate selectedDate) {
+        List<Object[]> queryResults = notificationTrackerRepository.countNotificationsPerHour(userId,selectedDate);
         Map<String, Integer> notificationsPerHour = new LinkedHashMap<>();
 
         // Initialize all hours with 0 notifications

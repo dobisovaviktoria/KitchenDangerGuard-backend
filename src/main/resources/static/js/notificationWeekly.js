@@ -91,15 +91,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Event listener for the date picker
     datePicker.addEventListener("change", () => {
         const selectedDate = datePicker.value;
-        if (selectedDate) {
-            const userId = 1; // Replace with the actual user ID
+
             renderWeeklyChart(userId, selectedDate);
-        }
+
     });
 
     // Default chart rendering for today's date
     const today = new Date().toISOString().split("T")[0];
     datePicker.value = today;
-    const userId = 1; // Replace with the actual user ID
+
     renderWeeklyChart(userId, today);
 });
