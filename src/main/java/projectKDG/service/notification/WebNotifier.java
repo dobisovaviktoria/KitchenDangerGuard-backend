@@ -9,18 +9,8 @@ import java.time.LocalDateTime;
 
 @Component
 public class WebNotifier implements NotificationStrategy {
-//    private final NotificationTrackerRepository notificationTrackerRepository;
-//
-//    public WebNotifier(NotificationTrackerRepository notificationTrackerRepository) {
-//        this.notificationTrackerRepository = notificationTrackerRepository;
-//    }
     @Override
     public void notify(Notification notification) {
-//        NotificationTracker notificationTracker = new NotificationTracker();
-//        notificationTracker.setUser(notification.getUser());
-//        notificationTracker.setSentAt(LocalDateTime.now());
-//        notificationTracker.setMessage(notification.getMessage());
-//
-//        notificationTrackerRepository.save(notificationTracker);
+        System.out.println("Web notification processed for: " + notification.getDestination());
     }
 }

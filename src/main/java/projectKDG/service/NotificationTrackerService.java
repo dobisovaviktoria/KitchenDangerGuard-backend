@@ -1,11 +1,15 @@
 package projectKDG.service;
 
 import org.springframework.stereotype.Service;
+import projectKDG.controller.SensorDataController;
 import projectKDG.domain.NotificationTracker;
 import projectKDG.domain.User;
 import projectKDG.repository.NotificationTrackerRepository;
+import projectKDG.repository.SensorDataRepository;
 import projectKDG.repository.UserRepository;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
@@ -18,10 +22,12 @@ public class NotificationTrackerService {
 
     private final NotificationTrackerRepository notificationTrackerRepository;
     private final UserRepository userRepository;
+    private SensorDataRepository sensorDataRepository;
 
-    public NotificationTrackerService(NotificationTrackerRepository notificationTrackerRepository, UserRepository userRepository) {
+    public NotificationTrackerService(NotificationTrackerRepository notificationTrackerRepository, UserRepository userRepository, SensorDataRepository sensorDataRepository) {
         this.notificationTrackerRepository = notificationTrackerRepository;
         this.userRepository = userRepository;
+        this.sensorDataRepository = sensorDataRepository;
     }
 
     public NotificationTracker createNotification(int userId) {
@@ -29,8 +35,14 @@ public class NotificationTrackerService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
 
+        // Get the average temperature
+        LocalDateTime time = LocalDateTime.now().minusMinutes(10);
+        Double averageTemperature = sensorDataRepository.findAverageTemperature(time);
+
         // Create and save the notification
-        NotificationTracker notification = new NotificationTracker(user, LocalDateTime.now());
+        NotificationTracker notification = new NotificationTracker(user, LocalDateTime.now(), averageTemperature);
+        notification.setMessage("KDG Alert. Stove is unattended and average temperature value is: " + averageTemperature);
+
         return notificationTrackerRepository.save(notification);
     }
 
@@ -78,5 +90,14 @@ public class NotificationTrackerService {
 
         // Return the map with the count of notifications per date
         return dailyNotifications;
-    }}
+    }
+
+    public List<NotificationTracker> getNotificationsByUser(int userId, Pageable pageable) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+        // Fetch the latest notifications for the user with pagination
+        return notificationTrackerRepository.findLatestNotificationsByUser(user, pageable);
+    }
+
+}
 

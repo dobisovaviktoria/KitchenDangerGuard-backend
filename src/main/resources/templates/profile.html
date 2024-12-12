@@ -6,7 +6,7 @@
 </head>
 <body>
 <div th:insert="fragments/navbar.html"></div>
-<div class="container vh-100 mt-5">
+<div class="container mt-5 min-vh-100">
   <div class="row">
     <div class="col-md-4">
       <div class="card shadow-sm rounded-3 mb-4">
@@ -34,12 +34,9 @@
                 th:each="notification : ${notifications}">
               <div>
                 <h6 class="fw-bold" th:text="${notification.message}"></h6>
-                <small class="text-muted" th:text="${notification.sentAt}"></small>
+                <small class="text-muted" th:text="'Notification ID: ' + ${notification.notificationId}"></small>
+                <small class="text-muted" th:text="${notification.sentAt}">[Timestamp]</small>
               </div>
-              <button class="btn btn-sm btn-outline-danger"
-                      th:onclick="'deleteNotification(' + ${notification.notificationId} + ')'">
-                Clear
-              </button>
             </li>
           </ul>
         </div>

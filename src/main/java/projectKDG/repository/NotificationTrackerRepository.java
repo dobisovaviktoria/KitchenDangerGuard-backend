@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import projectKDG.domain.NotificationTracker;
 import projectKDG.domain.User;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -13,7 +14,8 @@ import java.util.List;
 
 @Repository
 public interface NotificationTrackerRepository extends JpaRepository<NotificationTracker, Long> {
-    List<NotificationTracker> findByUser(User user);
+    @Query("SELECT n FROM NotificationTracker n WHERE n.user = :user ORDER BY n.sentAt DESC")
+    List<NotificationTracker> findLatestNotificationsByUser(@Param("user") User user, Pageable pageable);
 
     @Query("""
             SELECT EXTRACT(HOUR FROM nt.sentAt) AS hour, COUNT(nt) AS count
