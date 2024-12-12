@@ -23,7 +23,7 @@ public class SensorData {
     private LocalDateTime timestamp;
 
     @ManyToOne
-    @JoinColumn(name = "arduino_device_id", nullable = true)
+    @JoinColumn(name = "arduino_device_id", nullable = false)
     private ArduinoDevice arduinoDevice;
 
 

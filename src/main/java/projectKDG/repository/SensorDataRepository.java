@@ -13,7 +13,8 @@ public interface SensorDataRepository extends JpaRepository<SensorData, Integer>
     @Query("SELECT s FROM SensorData s WHERE s.timestamp >= :fromTime")
     List<SensorData> findRecentSensorData(LocalDateTime fromTime);
 
-    @Query("SELECT AVG(s.temperatureValue) FROM SensorData s WHERE s.timestamp >= :fromTime")
+    @Query("SELECT AVG(s.temperatureValue) FROM SensorData s WHERE s.timestamp >= :fromTime " +
+            "AND s.temperatureValue IS NOT NULL\n")
     Double findAverageTemperature(LocalDateTime fromTime);
 
     @Query("SELECT CASE WHEN COUNT(s) = 0 THEN true ELSE false END " +

@@ -27,7 +27,7 @@ public class AlertService {
     private final NotificationContext notificationContext;
     //NotificationStrategy notificationStrategy;
     private final NotificationPreference userNotificationPreference;
-    private final String userNotificationDestination;
+    //private final String userNotificationDestination;
 
     private final int offTemperature = 40;  // Configurable threshold
     private final int everyMinute = 10;    // Configurable duration
@@ -39,43 +39,67 @@ public class AlertService {
             //@Qualifier("compositeNotificationStrategy") NotificationStrategy notificationStrategy,
             NotificationContext notificationContext,
             @Value("${kdg.notification-preference}") NotificationPreference userNotificationPreference,
-            @Value("${kdg.notification-destination}") String userNotificationDestination, NotificationTrackerService notificationTrackerService) {
+            NotificationTrackerService notificationTrackerService) {
         this.sensorDataRepository = sensorDataRepository;
         this.notificationContext = notificationContext;
         this.userNotificationPreference = userNotificationPreference;
-        this.userNotificationDestination = userNotificationDestination;
+        //this.userNotificationDestination = userNotificationDestination;
         this.notificationTrackerService = notificationTrackerService;
     }
 
     @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 10000)
     public void checkForAlert() {
-        LocalDateTime time = LocalDateTime.now().minusMinutes(10);
+        LocalDateTime time = LocalDateTime.now().minusMinutes(everyMinute);
         List<SensorData> latestSensorData = sensorDataRepository.findRecentSensorData(time);
-        if (latestSensorData != null) {
-            if (sensorDataRepository.areAllMotionStatusesFalse(time) && sensorDataRepository.findAverageTemperature(time) != null &&
-                    sensorDataRepository.findAverageTemperature(time) > offTemperature) {
-                log.info("Sending alert notification");
-//From the data , we know device id and then the user ... to send an alert.
+
+        if (latestSensorData != null && !latestSensorData.isEmpty()) {
+            boolean allMotionFalse = sensorDataRepository.areAllMotionStatusesFalse(time);
+            Double avgTemp = sensorDataRepository.findAverageTemperature(time);
+
+            log.info("All motion statuses false: {}", allMotionFalse);
+            log.info("Average temperature: {}", avgTemp);
+
+            if (avgTemp == null) {
+                log.warn("Average temperature is null.");
+                return;
+            }
+
+            if (avgTemp > offTemperature) {
+                log.info("Triggering alerts for devices with average temperature > {}", offTemperature);
+
                 for (SensorData data : latestSensorData) {
-                    ArduinoDevice arduinoDevice = data.getArduinoDevice(); // Fetch the ArduinoDevice
-                    if (arduinoDevice != null) {
-                        User user = arduinoDevice.getUser(); // Fetch the User from ArduinoDevice
-                        if (user != null) {
-                            int userId = user.getUserID(); // Extract the userId
+                    ArduinoDevice arduinoDevice = data.getArduinoDevice();
+                    log.info("arduino device id is {}", arduinoDevice.getArduinoDeviceId());
 
-                            // Create a notification record
-                            notificationTrackerService.createNotification(userId);
+                    User user = arduinoDevice.getUser();
 
-                            notificationContext.executeStrategy(
-                                    new Notification(userNotificationDestination,
-                                            "KDG Alert. Stove is unattended and average temperature value is: " +
-                                                    sensorDataRepository.findAverageTemperature(time)), userNotificationPreference);
-
-                        }
+                    if (user == null) {
+                        log.warn("No user associated with ArduinoDevice ID: {}", arduinoDevice.getArduinoDeviceId());
+                        continue;
                     }
+
+                    String email = user.getEmail();
+                    if (email == null || email.isEmpty()) {
+                        log.warn("User email is not available for User ID: {}", user.getUserID());
+                        continue;
+                    }
+
+                    // Create a notification record
+                    notificationTrackerService.createNotification(user.getUserID());
+
+                    // Send the notification
+                    String message = "KDG Alert. Stove is unattended and average temperature value is: " + avgTemp;
+                    Notification notification = new Notification(email, message);
+                    notificationContext.executeStrategy(notification, userNotificationPreference);
+
+                    log.info("Notification sent to user: {} (Email: {})", user.getUserName(), email);
                 }
             }
+        } else {
+            log.info("No recent sensor data found since {}", time);
         }
     }
 }
+
 
