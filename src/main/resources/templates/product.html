@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>About Our Product</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<div th:insert="fragments/navbar.html"></div>
+
+<div class="flex-grow-1">
+    <!-- Hero Section -->
+    <div class="bg-dark text-white text-center py-5">
+        <div class="container">
+            <h1>Discover Kitchen Danger Guard</h1>
+            <p class="lead">Innovative, reliable, and designed to meet your needs.</p>
+        </div>
+    </div>
+
+    <!-- Product Introduction Section -->
+    <div class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2 class="fw-bold">What is KDG?</h2>
+                <p class="text-muted">Kitchen Danger Guard is a safety device designed to prevent kitchen fires by alerting the users if they leave the stove on. When the product detects unattended stove activity by monitoring the motion and heat in the nearby area, the system sends a notification alerting the user to the potential danger. If the danger persists, the device triggers an alarm and in a dire situation calls the fire brigade. The product combines advanced technology with user-friendly functionality for better use.    </p>
+            </div>
+            <div class="col-md-6 text-center">
+                <img th:src="@{/kdg.jpg}" class="img-fluid rounded" alt="Product Overview">
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div id="features" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Main Advantage</h2>
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <i class="bi bi-speedometer2 display-3 text-primary"></i>
+                    <h5 class="mt-3">Easy Integration</h5>
+                    <p>KDG can be easily hooked up to an already existing kitchen appliance. No need to remodel your kitchen!</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="bi bi-shield-check display-3 text-success"></i>
+                    <h5 class="mt-3">Compactness</h5>
+                    <p>KDG is a small and compact device that can be easily transported if needed.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="bi bi-lightbulb display-3 text-warning"></i>
+                    <h5 class="mt-3">Innovation</h5>
+                    <p>Driven by cutting-edge technology and constant innovation to help you stay ahead.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-md-6 order-md-2">
+                <h2 class="fw-bold">How It Works</h2>
+                <p class="text-muted">Using KDG is easy and efficient. Simply follow these steps to get started:</p>
+                <ol>
+                    <li>Set up KDG in your kitchen.</li>
+                    <li>Register for our website.</li>
+                    <li>Enjoy seamless operation and support whenever you need it.</li>
+                </ol>
+            </div>
+            <div class="col-md-6 order-md-1 text-center">
+                <img th:src="@{/company-user-manual.jpg}" class="img-fluid rounded" alt="How It Works">
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="bg-dark text-white text-center py-5">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p class="lead">Contact us today to learn more about Kitchen Danger Guard and how it can benefit you.</p>
+            <a href="/contact" class="btn btn-outline-light btn-lg">Contact Us</a>
+        </div>
+    </div>
+</div>
+
+<div th:insert="fragments/footer.html"></div>
+
+</body>
+</html>

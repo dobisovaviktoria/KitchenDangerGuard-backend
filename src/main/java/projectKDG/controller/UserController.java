@@ -75,4 +75,19 @@ public class UserController {
         return "home";
     }
 
+    @GetMapping("/team")
+    public String teamPage(HttpSession session) {
+        return "team";
+    }
+
+    @GetMapping("/product")
+    public String productPage(HttpSession session) {
+        return "product";
+    }
+
+    @GetMapping("/contact")
+    public String redirectToEmail() {
+        return "redirect:mailto:kitchendangerguard@gmail.com";
+    }
+
 }
