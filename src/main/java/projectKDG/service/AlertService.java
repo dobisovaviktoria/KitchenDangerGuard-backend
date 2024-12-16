@@ -21,13 +21,9 @@ public class AlertService {
 
     private static final Logger log = LoggerFactory.getLogger(AlertService.class);
 
-    //    private final MotionRepository motionRepository;
-//    private final TemperatureRepository temperatureRepository;
     private final SensorDataRepository sensorDataRepository;
     private final NotificationContext notificationContext;
     //NotificationStrategy notificationStrategy;
-    private final NotificationPreference userNotificationPreference;
-    //private final String userNotificationDestination;
 
     private final int offTemperature = 40;  // Configurable threshold
     private final int everyMinute = 10;    // Configurable duration
@@ -38,12 +34,9 @@ public class AlertService {
             SensorDataRepository sensorDataRepository,
             //@Qualifier("compositeNotificationStrategy") NotificationStrategy notificationStrategy,
             NotificationContext notificationContext,
-            @Value("${kdg.notification-preference}") NotificationPreference userNotificationPreference,
             NotificationTrackerService notificationTrackerService) {
         this.sensorDataRepository = sensorDataRepository;
         this.notificationContext = notificationContext;
-        this.userNotificationPreference = userNotificationPreference;
-        //this.userNotificationDestination = userNotificationDestination;
         this.notificationTrackerService = notificationTrackerService;
     }
 
@@ -91,7 +84,7 @@ public class AlertService {
                     // Send the notification
                     String message = "KDG Alert. Stove is unattended and average temperature value is: " + avgTemp;
                     Notification notification = new Notification(email, message);
-                    notificationContext.executeStrategy(notification, userNotificationPreference);
+                    notificationContext.executeStrategy(notification, user.getNotificationPreference());
 
                     log.info("Notification sent to user: {} (Email: {})", user.getUserName(), email);
                 }

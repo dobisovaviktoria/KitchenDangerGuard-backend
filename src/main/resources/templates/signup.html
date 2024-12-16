@@ -73,6 +73,17 @@
                                required>
                     </div>
 
+                    <div class="mb-3 w-50 mx-auto">
+                        <label for="preference" class="form-label">Notification Preference</label>
+                        <select type="form-select"
+                               name="preference"
+                               id="preference"
+                               th:field="*{notificationPreference}"
+                               required>
+                            <option th:each="preference : ${preferences}" th:text="${preference}" th:value="${preference}"></option>
+                        </select>
+                    </div>
+
                     <!-- Submit Button -->
                     <div class="w-50 mx-auto d-flex justify-content-center">
                         <button type="submit" class="btn btn-secondary w-100">Create Account</button>

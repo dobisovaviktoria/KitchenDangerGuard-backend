@@ -31,17 +31,21 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
+    @Column(name="preference")
+    private NotificationPreference notificationPreference;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<NotificationTracker> notifications = new ArrayList<>();
 
 
     // Constructors
-    public User(String phone, String email, String password, LocalDate age, String userName) {
+    public User(String phone, String email, String password, LocalDate age, String userName, NotificationPreference notificationPreference) {
         this.phone = phone;
         this.email = email;
         this.password = password;
         this.age = age;
         this.userName = userName;
+        this.notificationPreference = notificationPreference;
     }
 
     public User() {}
@@ -93,5 +97,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public NotificationPreference getNotificationPreference() {
+        return notificationPreference;
+    }
+
+    public void setNotificationPreference(NotificationPreference notificationPreference) {
+        this.notificationPreference = notificationPreference;
     }
 }

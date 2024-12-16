@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import projectKDG.domain.NotificationPreference;
 import projectKDG.domain.User;
 import projectKDG.service.UserService;
 import jakarta.servlet.http.HttpSession;
+
+import java.util.List;
 
 @Controller
 @RequestMapping
@@ -22,6 +25,7 @@ public class UserController {
     // GET request to show the sign-up form
     @GetMapping("/signup")
     public String showSignUpForm(Model model) {
+        model.addAttribute("preferences", List.of(NotificationPreference.values()));
         model.addAttribute("user", new User());  // Create an empty User object to bind to the form
         return "signup";
     }
