@@ -35,6 +35,8 @@ dependencies {
     // Spring Boot Mail dependency for sending emails
     implementation("org.springframework.boot:spring-boot-starter-mail")
 
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+
 }
 
 tasks.withType<Test> {

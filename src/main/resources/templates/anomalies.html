@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Anomalies</title>
+</head>
+<body>
+<h1>Anomalies Detected</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Timestamp</th>
+    <th>Temperature (°C)</th>
+    <th>Motion Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="anomaly : ${anomalies}">
+    <td th:text="${anomaly.timestamp}"></td>
+    <td th:text="${anomaly.temperatureValue}"></td>
+    <td th:text="${anomaly.motionStatus}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
