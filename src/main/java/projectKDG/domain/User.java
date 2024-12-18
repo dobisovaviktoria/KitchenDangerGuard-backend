@@ -38,14 +38,20 @@ public class User {
     private List<NotificationTracker> notifications = new ArrayList<>();
 
 
+    @OneToOne(mappedBy = "user")
+    private ArduinoDevice arduinoDevice;
+
+
+
     // Constructors
-    public User(String phone, String email, String password, LocalDate age, String userName, NotificationPreference notificationPreference) {
+    public User(String phone, String email, String password, LocalDate age, String userName, NotificationPreference notificationPreference,ArduinoDevice arduinoDevice) {
         this.phone = phone;
         this.email = email;
         this.password = password;
         this.age = age;
         this.userName = userName;
         this.notificationPreference = notificationPreference;
+        this.arduinoDevice = arduinoDevice;
     }
 
     public User() {}
@@ -106,4 +112,12 @@ public class User {
     public void setNotificationPreference(NotificationPreference notificationPreference) {
         this.notificationPreference = notificationPreference;
     }
+    public ArduinoDevice getArduinoDevice() {
+        return arduinoDevice;
+    }
+
+    public void setArduinoDevice(ArduinoDevice arduinoDevice) {
+        this.arduinoDevice = arduinoDevice;
+    }
+
 }
