@@ -31,6 +31,7 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
     // Find user by email and validate password
     public boolean validateUser(String email, String password) {
         Optional<User> userOptional = userRepository.findByEmail(email);

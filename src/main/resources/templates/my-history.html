@@ -9,6 +9,7 @@
     <script defer th:src="@{/js/duration.js}"></script>
     <script defer th:src="@{/js/notificationHourly.js}"></script>
     <script defer th:src="@{/js/notificationWeekly.js}"></script>
+    <script defer th:src="@{/js/motionDetection.js}"></script>
     <script>
         // Pass userId to the JavaScript context
         const userId = [[${user.userID}]];
@@ -45,14 +46,18 @@
         <canvas id="hourlyNotificationChart"></canvas>
     </div>
 
-    <div>
+    <div class="mb-5">
         <h3>Weekly Notifications</h3>
         <div id="weeklyCalendar" class="calendar-container"></div>
         <canvas id="weeklyNotificationChart" ></canvas>
     </div>
+
+    <!-- Motion Detection Frequency Section -->
+    <div class="mb-5">
+        <h3>Motion Detection Frequency by Temperature Ranges</h3>
+        <canvas id="motionDetectionChart"></canvas>
+    </div>
 </div>
-
-
 
 <div th:insert="fragments/footer.html"></div>
 </body>

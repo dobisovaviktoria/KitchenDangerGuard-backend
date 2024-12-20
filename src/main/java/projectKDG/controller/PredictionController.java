@@ -28,6 +28,7 @@ public class PredictionController {
 
         return "prediction";
     }
+
     @GetMapping("/prediction-data")
     @ResponseBody  // This tells Spring to return the data as JSON
     public PredictionResponse getPredictionData(HttpSession session) {

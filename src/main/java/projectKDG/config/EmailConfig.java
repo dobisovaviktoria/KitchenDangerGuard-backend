@@ -24,7 +24,7 @@ public class EmailConfig {
 
     @Value("${spring.mail.password}")
     private String password;
-//
+
 //    @Value("${spring.mail.properties.mail.smtp.auth}")
 //    private String smtpAuth;
 
@@ -45,7 +45,7 @@ public class EmailConfig {
         props.put("mail.smtp.starttls.enable", "false");
         props.put("mail.smtp.socketFactory.port", "465");
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.debug", "true");;
+        props.put("mail.debug", "true");
 
         return mailSender;
     }

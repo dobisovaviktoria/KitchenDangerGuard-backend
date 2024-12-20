@@ -2,9 +2,6 @@ package projectKDG.domain;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Table(name = "arduino_device")
 public class ArduinoDevice {

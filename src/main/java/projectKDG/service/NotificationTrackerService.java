@@ -1,15 +1,14 @@
 package projectKDG.service;
 
 import org.springframework.stereotype.Service;
-import projectKDG.controller.SensorDataController;
 import projectKDG.domain.NotificationTracker;
 import projectKDG.domain.User;
 import projectKDG.repository.NotificationTrackerRepository;
 import projectKDG.repository.SensorDataRepository;
 import projectKDG.repository.UserRepository;
 
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
@@ -46,8 +45,8 @@ public class NotificationTrackerService {
         return notificationTrackerRepository.save(notification);
     }
 
-    public Map<String, Integer> getNotificationsPerHour(int userId,LocalDate selectedDate) {
-        List<Object[]> queryResults = notificationTrackerRepository.countNotificationsPerHour(userId,selectedDate);
+    public Map<String, Integer> getNotificationsPerHour(int userId, LocalDate selectedDate) {
+        List<Object[]> queryResults = notificationTrackerRepository.countNotificationsPerHour(userId, selectedDate);
         Map<String, Integer> notificationsPerHour = new LinkedHashMap<>();
 
         // Initialize all hours with 0 notifications
@@ -100,4 +99,3 @@ public class NotificationTrackerService {
     }
 
 }
-

@@ -2,12 +2,9 @@ package projectKDG.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import projectKDG.domain.ArduinoDevice;
-import projectKDG.domain.NotificationPreference;
 import projectKDG.domain.SensorData;
 import projectKDG.domain.User;
 import projectKDG.repository.SensorDataRepository;
@@ -94,5 +91,3 @@ public class AlertService {
         }
     }
 }
-
-

@@ -1,11 +1,12 @@
 package projectKDG.domain;
 
-public  class Prediction {
+public class Prediction {
     private double temperature;
     private String timeframe;
 
     // Default constructor
-    public Prediction() {}
+    public Prediction() {
+    }
 
     // Constructor for easier deserialization
     public Prediction(double temperature, String timeframe) {

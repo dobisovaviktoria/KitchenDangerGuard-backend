@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SmsNotifier implements NotificationStrategy{
+public class SmsNotifier implements NotificationStrategy {
     private static final Logger log = LoggerFactory.getLogger(SmsNotifier.class);
 
     @Override

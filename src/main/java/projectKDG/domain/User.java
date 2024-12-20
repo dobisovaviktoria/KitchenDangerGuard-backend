@@ -1,6 +1,7 @@
 package projectKDG.domain;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name="preference")
+    @Column(name = "preference")
     private NotificationPreference notificationPreference;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -42,9 +43,8 @@ public class User {
     private ArduinoDevice arduinoDevice;
 
 
-
     // Constructors
-    public User(String phone, String email, String password, LocalDate age, String userName, NotificationPreference notificationPreference,ArduinoDevice arduinoDevice) {
+    public User(String phone, String email, String password, LocalDate age, String userName, NotificationPreference notificationPreference, ArduinoDevice arduinoDevice) {
         this.phone = phone;
         this.email = email;
         this.password = password;
@@ -54,7 +54,8 @@ public class User {
         this.arduinoDevice = arduinoDevice;
     }
 
-    public User() {}
+    public User() {
+    }
 
     // Getters and Setters
     public int getUserID() {
@@ -112,6 +113,7 @@ public class User {
     public void setNotificationPreference(NotificationPreference notificationPreference) {
         this.notificationPreference = notificationPreference;
     }
+
     public ArduinoDevice getArduinoDevice() {
         return arduinoDevice;
     }
@@ -119,5 +121,4 @@ public class User {
     public void setArduinoDevice(ArduinoDevice arduinoDevice) {
         this.arduinoDevice = arduinoDevice;
     }
-
 }

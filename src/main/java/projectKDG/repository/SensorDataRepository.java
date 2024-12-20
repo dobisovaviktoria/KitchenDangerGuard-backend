@@ -27,35 +27,35 @@ public interface SensorDataRepository extends JpaRepository<SensorData, Integer>
     List<SensorData> findByUserId(@Param("userId") int userId);
 
     @Query("""
-    SELECT 
-        CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER) AS hour, 
-        COUNT(s.id) AS recordCount
-    FROM SensorData s
-    JOIN s.arduinoDevice a
-    WHERE DATE(s.timestamp) = :selectedDate 
-      AND s.temperatureValue > 20
-      AND a.user.userID = :userId
-    GROUP BY CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER)
-    ORDER BY CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER)
-""")
+                SELECT 
+                    CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER) AS hour, 
+                    COUNT(s.id) AS recordCount
+                FROM SensorData s
+                JOIN s.arduinoDevice a
+                WHERE DATE(s.timestamp) = :selectedDate 
+                  AND s.temperatureValue > 20
+                  AND a.user.userID = :userId
+                GROUP BY CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER)
+                ORDER BY CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER)
+            """)
     List<Object[]> findStoveOnDurationsPerHour(
             @Param("selectedDate") LocalDate selectedDate,
             @Param("userId") int userId
     );
 
     @Query("""
-    SELECT 
-        CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER) AS hour, 
-        AVG(COUNT(s.id)) OVER (PARTITION BY CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER)) AS avgUsage
-    FROM SensorData s
-    JOIN s.arduinoDevice a
-    WHERE EXTRACT(MONTH FROM s.timestamp) = :month
-      AND EXTRACT(YEAR FROM s.timestamp) = :year
-      AND s.temperatureValue > 20
-      AND a.user.userID = :userId
-    GROUP BY CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER)
-    ORDER BY CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER)
-    """)
+            SELECT 
+                CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER) AS hour, 
+                AVG(COUNT(s.id)) OVER (PARTITION BY CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER)) AS avgUsage
+            FROM SensorData s
+            JOIN s.arduinoDevice a
+            WHERE EXTRACT(MONTH FROM s.timestamp) = :month
+              AND EXTRACT(YEAR FROM s.timestamp) = :year
+              AND s.temperatureValue > 20
+              AND a.user.userID = :userId
+            GROUP BY CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER)
+            ORDER BY CAST(EXTRACT(HOUR FROM s.timestamp) AS INTEGER)
+            """)
     List<Object[]> findMonthlyStoveDurationsPerHour(
             @Param("month") int month,
             @Param("year") int year,

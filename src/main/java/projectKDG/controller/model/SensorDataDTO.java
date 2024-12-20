@@ -7,7 +7,8 @@ public class SensorDataDTO {
     private int deviceId;
 
     // Constructors
-    public SensorDataDTO() {}
+    public SensorDataDTO() {
+    }
 
     public SensorDataDTO(boolean motionStatus, float temperatureValue, int deviceId) {
         this.motionStatus = motionStatus;

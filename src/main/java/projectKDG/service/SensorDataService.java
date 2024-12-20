@@ -92,4 +92,36 @@ public class SensorDataService {
 
         return hourlyAverages;
     }
+
+    public static Map<String, long[]> calculateMotionCountsByTemperatureBins(
+            List<Float> temperatures,
+            List<Boolean> motionStatuses,
+            double[] bins,
+            String[] labels) {
+
+        // Initialize counts
+        Map<String, long[]> counts = new LinkedHashMap<>();
+        for (String label : labels) {
+            counts.put(label, new long[]{0, 0}); // {no_motion_count, motion_count}
+        }
+
+        // Assign each temperature to a bin
+        for (int i = 0; i < temperatures.size(); i++) {
+            double temperature = temperatures.get(i);
+            boolean motionStatus = motionStatuses.get(i);
+
+            for (int j = 0; j < bins.length - 1; j++) {
+                if (temperature >= bins[j] && temperature < bins[j + 1]) {
+                    String label = labels[j];
+                    if (motionStatus) {
+                        counts.get(label)[1]++; // Increment motion count
+                    } else {
+                        counts.get(label)[0]++; // Increment no-motion count
+                    }
+                    break;
+                }
+            }
+        }
+        return counts;
+    }
 }

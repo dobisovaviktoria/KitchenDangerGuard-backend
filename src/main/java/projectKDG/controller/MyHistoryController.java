@@ -8,7 +8,6 @@ import projectKDG.domain.SensorData;
 import projectKDG.domain.User;
 import projectKDG.service.SensorDataService;
 
-
 import java.util.List;
 
 @Controller
@@ -27,7 +26,6 @@ public class MyHistoryController {
         if (user == null) {
             return "redirect:/login";
         }
-
 
         List<SensorData> sensorDataList = sensorDataService.getSensorDataByUserId(user.getUserID());
 

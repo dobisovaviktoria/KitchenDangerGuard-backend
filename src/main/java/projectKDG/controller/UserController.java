@@ -48,7 +48,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String loginPage(){
+    public String loginPage() {
         return "login";
     }
 
@@ -68,6 +68,7 @@ public class UserController {
             return "login";  // Return to the login page with an error message
         }
     }
+
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();  // Invalidate the session
@@ -93,5 +94,4 @@ public class UserController {
     public String redirectToEmail() {
         return "redirect:mailto:kitchendangerguard@gmail.com";
     }
-
 }

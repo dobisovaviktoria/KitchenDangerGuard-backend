@@ -8,10 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import projectKDG.controller.model.SensorDataDTO;
-//import projectKDG.domain.ArduinoDevice;
 import projectKDG.domain.ArduinoDevice;
 import projectKDG.domain.SensorData;
-import projectKDG.repository.ArduinoDeviceRepository;
 import projectKDG.service.ArduinoDeviceService;
 import projectKDG.service.SensorDataService;
 
@@ -50,7 +48,6 @@ public class SensorDataController {
                 sensorDataDto.getDeviceId(),
                 now);
 
-
         // Fetch the ArduinoDevice
         ArduinoDevice arduinoDevice = arduinoDeviceService.getArduinoDeviceById(sensorDataDto.getDeviceId());
         if (arduinoDevice == null) {
@@ -68,7 +65,6 @@ public class SensorDataController {
         sensorData.setTimestamp(now);
 
         sensorDataService.saveSensorData(sensorData);
-
 
         // Return a response back to Arduino
         return new ResponseEntity<>(

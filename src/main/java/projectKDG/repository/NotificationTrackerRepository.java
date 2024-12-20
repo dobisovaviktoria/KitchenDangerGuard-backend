@@ -25,7 +25,6 @@ public interface NotificationTrackerRepository extends JpaRepository<Notificatio
             GROUP BY EXTRACT(HOUR FROM nt.sentAt)
             ORDER BY hour
             """)
-
     List<Object[]> countNotificationsPerHour(@Param("userId") int userId,
                                              @Param("selectedDate") LocalDate selectedDate);
 
@@ -35,8 +34,5 @@ public interface NotificationTrackerRepository extends JpaRepository<Notificatio
             @Param("userId") int userId,
             @Param("startOfWeek") LocalDateTime startOfWeek,
             @Param("endOfWeek") LocalDateTime endOfWeek
-    );}
-
-
-
-
+    );
+}

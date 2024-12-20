@@ -1,6 +1,5 @@
 package projectKDG.service.notification;
 
-
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 import projectKDG.domain.NotificationPreference;

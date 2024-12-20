@@ -1,11 +1,6 @@
 package projectKDG.service.notification;
 
 import org.springframework.stereotype.Component;
-import projectKDG.domain.NotificationPreference;
-import projectKDG.domain.NotificationTracker;
-import projectKDG.repository.NotificationTrackerRepository;
-
-import java.time.LocalDateTime;
 
 @Component
 public class WebNotifier implements NotificationStrategy {

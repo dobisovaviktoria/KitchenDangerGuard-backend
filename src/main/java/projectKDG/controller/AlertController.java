@@ -1,17 +1,10 @@
 package projectKDG.controller;
 
-////for website
+//for website
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 
 public class AlertController {
-
-
-
-
-
-
-
-
 }

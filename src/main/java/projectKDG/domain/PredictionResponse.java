@@ -19,7 +19,6 @@ public class PredictionResponse {
     public PredictionResponse(String noPrediction) {
     }
 
-
     // Getters and Setters
     public int getArduinoId() {
         return arduinoId;
@@ -44,7 +43,8 @@ public class PredictionResponse {
         private String message; // For string-based prediction messages
 
         // Default constructor
-        public Prediction() {}
+        public Prediction() {
+        }
 
         // Constructor for object-based predictions (temperature and timeframe)
         @JsonCreator

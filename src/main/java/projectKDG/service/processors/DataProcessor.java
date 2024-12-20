@@ -4,5 +4,5 @@ import projectKDG.domain.SensorData;
 
 //component
 public interface DataProcessor {
-        void process(SensorData sensorData);
+    void process(SensorData sensorData);
 }

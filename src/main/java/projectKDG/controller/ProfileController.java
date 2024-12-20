@@ -9,11 +9,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import projectKDG.domain.NotificationTracker;
 import projectKDG.domain.User;
-import projectKDG.repository.SensorDataRepository;
 import projectKDG.repository.UserRepository;
 import projectKDG.service.NotificationTrackerService;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -38,7 +36,6 @@ public class ProfileController {
 
         model.addAttribute("user", user);
         Pageable pageable = PageRequest.of(0, 10);
-
 
         List<NotificationTracker> notifications = notificationTrackerService.getNotificationsByUser(user.getUserID(), pageable);
 
