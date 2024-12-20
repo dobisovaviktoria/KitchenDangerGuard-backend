@@ -20,6 +20,9 @@ public class PredictionController {
     @GetMapping("/prediction")
     public String showPredictionPage(HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedInUser");
+        if (user == null) {
+            return "redirect:/login";
+        }
         ArduinoDevice arduinoDevice = user.getArduinoDevice();
         int device_id = arduinoDevice.getArduinoDeviceId();
 
