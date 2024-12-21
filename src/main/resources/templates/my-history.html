@@ -11,7 +11,6 @@
     <script defer th:src="@{/js/notificationWeekly.js}"></script>
     <script defer th:src="@{/js/motionDetection.js}"></script>
     <script>
-        // Pass userId to the JavaScript context
         const userId = [[${user.userID}]];
     </script>
 </head>
@@ -20,42 +19,43 @@
 
 <div class="container mt-4">
     <h1>Welcome, <span th:text="${user.userName}">Guest</span>!</h1>
-    <h2>My History</h2>
 
-    <!-- Date Picker Section -->
     <div class="mb-4">
         <label for="datePicker" class="form-label">Select Date:</label>
-        <input type="date" id="datePicker" class="form-control">
+        <input type="date" id="datePicker" class="form-control w-auto" style="max-width: 200px;">
     </div>
 
-    <!-- Daily Stove Usage Section -->
-    <div class="mb-5">
-        <h3>Daily Stove Usage</h3>
-        <canvas id="dailyStoveDurationChart"></canvas>
+    <!-- Graphs Section -->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <h3>Daily Stove Usage</h3>
+            <canvas id="dailyStoveDurationChart"></canvas>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <h3>Monthly Stove Usage Average</h3>
+            <canvas id="monthlyStoveDurationChart"></canvas>
+        </div>
     </div>
 
-    <!-- Monthly Stove Usage Section -->
-    <div class="mb-5">
-        <h3>Monthly Stove Usage Average</h3>
-        <canvas id="monthlyStoveDurationChart"></canvas>
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <h3>Hourly Notifications Received</h3>
+            <canvas id="hourlyNotificationChart"></canvas>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <h3>Weekly Notifications</h3>
+            <div id="weeklyCalendar" class="calendar-container"></div>
+            <canvas id="weeklyNotificationChart"></canvas>
+        </div>
     </div>
 
-    <!-- Hourly Notifications Section -->
-    <div class="mb-5">
-        <h3>Hourly Notifications Received</h3>
-        <canvas id="hourlyNotificationChart"></canvas>
-    </div>
-
-    <div class="mb-5">
-        <h3>Weekly Notifications</h3>
-        <div id="weeklyCalendar" class="calendar-container"></div>
-        <canvas id="weeklyNotificationChart" ></canvas>
-    </div>
-
-    <!-- Motion Detection Frequency Section -->
-    <div class="mb-5">
-        <h3>Motion Detection Frequency by Temperature Ranges</h3>
-        <canvas id="motionDetectionChart"></canvas>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h3 class="text-center">Motion Detection Frequency by Temperature Ranges</h3>
+            <canvas id="motionDetectionChart"></canvas>
+        </div>
     </div>
 </div>
 
