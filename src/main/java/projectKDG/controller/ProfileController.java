@@ -56,7 +56,7 @@ public class ProfileController {
         return "profile";
     }
 
-    @PostMapping("/update-profile")
+    @PostMapping("/edit-profile")
     public String updateProfile(HttpSession session, Model model, @RequestParam String username,
                                 @RequestParam String email,
                                 @RequestParam String phone,
@@ -78,5 +78,14 @@ public class ProfileController {
 
         userRepository.save(user);
         return "redirect:/profile";
+    }
+
+    @GetMapping("/edit-profile")
+    public String editProfile(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("loggedInUser");
+        model.addAttribute("user", user);
+        model.addAttribute("preferences", List.of(NotificationPreference.values()));
+        model.addAttribute("maxDate", java.time.LocalDate.now().toString());
+        return "edit-profile";
     }
 }
