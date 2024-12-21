@@ -49,6 +49,8 @@ public class UserController {
             model.addAttribute("arduinoDeviceIdError", "This Arduino ID is already taken.");
             model.addAttribute("user", user);
             model.addAttribute("arduinoDevice", arduinoDevice);
+            model.addAttribute("preferences", List.of(NotificationPreference.values()));
+            model.addAttribute("maxDate", java.time.LocalDate.now().toString());
             return "signup";
         }
 
