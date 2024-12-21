@@ -93,6 +93,9 @@
                                required
                                min="0">
                     </div>
+                    <div th:if="${arduinoDeviceIdError}" class="alert alert-danger">
+                        <span th:text="${arduinoDeviceIdError}"></span>
+                    </div>
 
                     <!-- Submit Button -->
                     <div class="w-50 mx-auto d-flex justify-content-center">

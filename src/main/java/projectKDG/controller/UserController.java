@@ -36,9 +36,19 @@ public class UserController {
 
     // POST request to handle form submission and save user data
     @PostMapping("/signup")
-    public String processSignUp(@ModelAttribute("user") User user, Model model) {
+    public String processSignUp(@ModelAttribute("user") User user, @ModelAttribute ArduinoDevice arduinoDevice, Model model) {
         if (userService.emailExists(user.getEmail())) {
             model.addAttribute("error", "Email already exists");
+            return "signup";
+        }
+
+        // Check if the Arduino ID is already taken
+        ArduinoDevice existingDevice = arduinoDeviceService.findById(arduinoDevice.getArduinoDeviceId());
+        if (existingDevice != null) {
+            // If the Arduino ID is already taken, add an error message
+            model.addAttribute("arduinoDeviceIdError", "This Arduino ID is already taken.");
+            model.addAttribute("user", user);
+            model.addAttribute("arduinoDevice", arduinoDevice);
             return "signup";
         }
 
