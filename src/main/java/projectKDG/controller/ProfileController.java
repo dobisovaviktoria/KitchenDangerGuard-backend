@@ -9,10 +9,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import projectKDG.domain.ArduinoDevice;
 import projectKDG.domain.NotificationPreference;
 import projectKDG.domain.NotificationTracker;
 import projectKDG.domain.User;
 import projectKDG.repository.UserRepository;
+import projectKDG.service.ArduinoDeviceService;
 import projectKDG.service.NotificationTrackerService;
 
 import java.time.LocalDate;
@@ -23,11 +25,13 @@ public class ProfileController {
 
     private final UserRepository userRepository;
     private final NotificationTrackerService notificationTrackerService;
+    private final ArduinoDeviceService arduinoDeviceService;
 
     @Autowired
-    public ProfileController(UserRepository userRepository, NotificationTrackerService notificationTrackerService) {
+    public ProfileController(UserRepository userRepository, NotificationTrackerService notificationTrackerService, ArduinoDeviceService arduinoDeviceService) {
         this.userRepository = userRepository;
         this.notificationTrackerService = notificationTrackerService;
+        this.arduinoDeviceService = arduinoDeviceService;
     }
 
     @GetMapping("/profile")
@@ -37,6 +41,9 @@ public class ProfileController {
         if (user == null) {
             return "redirect:/login"; // Redirect to login if not logged in
         }
+
+        ArduinoDevice arduinoDevice = arduinoDeviceService.getArduinoDeviceByUserId(user.getUserID());
+        model.addAttribute("arduinoDevice", arduinoDevice);
 
         model.addAttribute("user", user);
         model.addAttribute("preferences", List.of(NotificationPreference.values()));

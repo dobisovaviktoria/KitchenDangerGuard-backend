@@ -39,7 +39,7 @@ public class User {
     private List<NotificationTracker> notifications = new ArrayList<>();
 
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private ArduinoDevice arduinoDevice;
 
 

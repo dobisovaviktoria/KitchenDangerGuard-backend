@@ -84,6 +84,16 @@
                         </select>
                     </div>
 
+                    <div class="mb-3 w-50 mx-auto">
+                        <label for="arduino_id" class="form-label">Arduino ID</label>
+                        <input type="number"
+                               class="form-control"
+                               id="arduino_id"
+                               th:field="*{arduinoDevice.arduinoDeviceId}"
+                               required
+                               min="0">
+                    </div>
+
                     <!-- Submit Button -->
                     <div class="w-50 mx-auto d-flex justify-content-center">
                         <button type="submit" class="btn btn-secondary w-100">Create Account</button>

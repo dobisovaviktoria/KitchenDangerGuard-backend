@@ -17,6 +17,9 @@
             <p><strong>Phone:</strong> <span th:text="${user.phone}"></span></p>
             <p><strong>Date of Birth:</strong> <span th:text="${user.age}"></span></p>
             <p><strong>Notification Preference:</strong> <span th:text="${user.notificationPreference}"></span></p>
+            <p><strong>Arduino Device ID:</strong>
+              <span th:text="${arduinoDevice != null ? arduinoDevice.arduinoDeviceId : 'Not Assigned'}"></span>
+            </p>
           </div>
           <a class="btn btn-secondary w-100" th:href="@{/logout}">Logout</a>
           <a class="btn btn-secondary w-100 mt-3" th:href="@{/edit-profile}">Edit Profile</a>

@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import projectKDG.domain.ArduinoDevice;
 import projectKDG.domain.NotificationPreference;
 import projectKDG.domain.User;
+import projectKDG.service.ArduinoDeviceService;
 import projectKDG.service.UserService;
 import jakarta.servlet.http.HttpSession;
 
@@ -16,10 +18,12 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final ArduinoDeviceService arduinoDeviceService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ArduinoDeviceService arduinoDeviceService) {
         this.userService = userService;
+        this.arduinoDeviceService = arduinoDeviceService;
     }
 
     // GET request to show the sign-up form
@@ -37,8 +41,32 @@ public class UserController {
             model.addAttribute("error", "Email already exists");
             return "signup";
         }
+
+        // Save the user first to persist the user data
         userService.saveUser(user);
-        return "redirect:/login";  // Redirect to a success page after saving
+
+        if (user.getArduinoDevice() != null && user.getArduinoDevice().getArduinoDeviceId() > 0) {
+            int arduinoDeviceId = user.getArduinoDevice().getArduinoDeviceId();
+            ArduinoDevice existingArduinoDevice = arduinoDeviceService.findById(arduinoDeviceId);
+
+            if (existingArduinoDevice == null) {
+                ArduinoDevice newArduinoDevice = new ArduinoDevice();
+                newArduinoDevice.setArduinoDeviceId(arduinoDeviceId);
+
+                user.setArduinoDevice(newArduinoDevice);
+                newArduinoDevice.setUser(user);
+
+                arduinoDeviceService.save(newArduinoDevice);
+            } else {
+                user.setArduinoDevice(existingArduinoDevice);
+                existingArduinoDevice.setUser(user);
+            }
+        }
+
+        // Update the user (it already exists now)
+        userService.saveUser(user);
+
+        return "redirect:/login";
     }
 
     // GET request to show the login form

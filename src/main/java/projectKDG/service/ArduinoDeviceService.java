@@ -18,4 +18,16 @@ public class ArduinoDeviceService {
         // Use findById and handle the Optional
         return arduinoDeviceRepository.findById(id).orElse(null);
     }
+
+    public ArduinoDevice getArduinoDeviceByUserId(int userId) {
+        return arduinoDeviceRepository.findByUser_UserID(userId).orElse(null);
+    }
+
+    public ArduinoDevice findById(int arduinoDeviceID) {
+        return arduinoDeviceRepository.findById(arduinoDeviceID).orElse(null);
+    }
+
+    public void save(ArduinoDevice arduinoDevice) {
+        arduinoDeviceRepository.save(arduinoDevice);
+    }
 }
