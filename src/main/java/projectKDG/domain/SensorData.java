@@ -27,8 +27,7 @@ public class SensorData {
     @JoinColumn(name = "arduino_device_id", nullable = false)
     private ArduinoDevice arduinoDevice;
 
-
-    // Constructors
+   // Constructors
     public SensorData() {
     }
 
