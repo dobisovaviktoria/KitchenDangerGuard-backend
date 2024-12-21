@@ -36,19 +36,19 @@ public class UserController {
 
     // POST request to handle form submission and save user data
     @PostMapping("/signup")
-    public String processSignUp(@ModelAttribute("user") User user, @ModelAttribute ArduinoDevice arduinoDevice, Model model) {
+    public String processSignUp(@ModelAttribute("user") User user, Model model) {
         if (userService.emailExists(user.getEmail())) {
             model.addAttribute("error", "Email already exists");
             return "signup";
         }
 
         // Check if the Arduino ID is already taken
-        ArduinoDevice existingDevice = arduinoDeviceService.findById(arduinoDevice.getArduinoDeviceId());
+        ArduinoDevice existingDevice = arduinoDeviceService.findById(user.getArduinoDevice().getArduinoDeviceId());
         if (existingDevice != null) {
             // If the Arduino ID is already taken, add an error message
             model.addAttribute("arduinoDeviceIdError", "This Arduino ID is already taken.");
             model.addAttribute("user", user);
-            model.addAttribute("arduinoDevice", arduinoDevice);
+            model.addAttribute("arduinoDevice", user.getArduinoDevice());
             model.addAttribute("preferences", List.of(NotificationPreference.values()));
             model.addAttribute("maxDate", java.time.LocalDate.now().toString());
             return "signup";
@@ -57,23 +57,7 @@ public class UserController {
         // Save the user first to persist the user data
         userService.saveUser(user);
 
-        if (user.getArduinoDevice() != null && user.getArduinoDevice().getArduinoDeviceId() > 0) {
-            int arduinoDeviceId = user.getArduinoDevice().getArduinoDeviceId();
-            ArduinoDevice existingArduinoDevice = arduinoDeviceService.findById(arduinoDeviceId);
-
-            if (existingArduinoDevice == null) {
-                ArduinoDevice newArduinoDevice = new ArduinoDevice();
-                newArduinoDevice.setArduinoDeviceId(arduinoDeviceId);
-
-                user.setArduinoDevice(newArduinoDevice);
-                newArduinoDevice.setUser(user);
-
-                arduinoDeviceService.save(newArduinoDevice);
-            } else {
-                user.setArduinoDevice(existingArduinoDevice);
-                existingArduinoDevice.setUser(user);
-            }
-        }
+        arduinoDeviceService.assignUserAndDevice(user);
 
         // Update the user (it already exists now)
         userService.saveUser(user);
