@@ -10,13 +10,14 @@
 <body>
 <div th:insert="fragments/navbar.html"></div>
 <!-- Navigation and other HTML content -->
-<div class="container mt-5">
+<div class="container mt-3">
   <h1 class="text-center">Prediction</h1>
   <div class="row">
     <div class="col-md-6 mx-auto">
       <div class="card">
         <div class="card-body">
-          <h4>Prediction Results</h4>
+<!--          <h4>Prediction Results</h4>-->
+          <img id="prediction-image" src="/images/prediction.png" alt="Prediction Image" class="img-fluid w-75 mb-3" />
           <p id="prediction-message"></p>
           <div class="d-flex justify-content-between">
             <button id="loadPredictionBtn" class="btn btn-primary">Load Prediction</button>
