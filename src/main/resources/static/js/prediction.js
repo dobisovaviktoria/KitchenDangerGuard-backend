@@ -19,7 +19,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data && data.future_prediction !== null) {
                     // If future_prediction exists, display it
                     const prediction = data.future_prediction;
-                    predictionMessage.textContent = `Prediction: ${prediction.temperature}°C, Timeframe: ${prediction.timeframe}`;
+                    const predictionTimestamp = new Date(prediction.timeframe);
+                    const currentTime = new Date();
+
+                    if (predictionTimestamp < currentTime) {
+                        // If the prediction timestamp is in the past, show 'No prediction for now'
+                        predictionMessage.textContent = 'No prediction for now.';
+                    } else {
+                        const roundedTemperature = prediction.temperature.toFixed(2);
+                        predictionMessage.textContent = `Prediction: ${roundedTemperature}°C, \n
+                                                          Timeframe: ${prediction.timeframe}`;
+                    }
+
                 } else {
                     // If future_prediction is null, show a custom message
                     predictionMessage.textContent = 'No dangerous situation detected in the next 2 hours.';
