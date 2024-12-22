@@ -24,6 +24,9 @@ public class NotificationTracker {
     @Column(name = "sent_at", nullable = false)
     private LocalDateTime sentAt;
 
+    @Column(name = "seen", nullable = false)
+    private boolean seen = false;
+
     @Transient
     private String message; // message doesn't need to be persisted, so keep it as transient
 
@@ -75,5 +78,13 @@ public class NotificationTracker {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+    
+    public boolean isSeen() {
+        return seen;
+    }
+
+    public void setSeen(boolean seen) {
+        this.seen = seen;
     }
 }

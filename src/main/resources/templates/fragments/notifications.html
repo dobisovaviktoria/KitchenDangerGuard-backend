@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Notifications</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <script defer th:src="@{/js/notificationMarker.js}"></script>
+</head>
+<body>
+<div class="toast-container position-absolute top-5 end-0 p-3">
+    <div th:each="unseenNotification : ${unseenNotifications}"
+         class="toast align-items-center show"
+         role="alert"
+         aria-live="assertive"
+         aria-atomic="true"
+         th:attr="data-id=${unseenNotification.notificationId}">
+        <div class="d-flex">
+            <div class="toast-body">
+                <span th:text="${unseenNotification.message}"></span>
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+<script defer th:src="@{/js/notifications.js}"></script>
+<script defer th:src="@{/js/notificationStream.js}"></script>
+</body>
+</html>

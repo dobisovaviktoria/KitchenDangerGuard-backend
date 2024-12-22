@@ -4,8 +4,10 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import projectKDG.domain.NotificationTracker;
 import projectKDG.domain.SensorData;
 import projectKDG.domain.User;
+import projectKDG.service.NotificationTrackerService;
 import projectKDG.service.SensorDataService;
 
 import java.util.List;

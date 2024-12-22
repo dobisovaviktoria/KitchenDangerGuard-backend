@@ -1,6 +1,9 @@
 package projectKDG.service;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import projectKDG.controller.NotificationStreamController;
 import projectKDG.domain.NotificationTracker;
 import projectKDG.domain.User;
 import projectKDG.repository.NotificationTrackerRepository;
@@ -23,26 +26,31 @@ public class NotificationTrackerService {
     private final UserRepository userRepository;
     private SensorDataRepository sensorDataRepository;
 
-    public NotificationTrackerService(NotificationTrackerRepository notificationTrackerRepository, UserRepository userRepository, SensorDataRepository sensorDataRepository) {
+    @Lazy
+    private final NotificationStreamController streamController;
+
+    public NotificationTrackerService(NotificationTrackerRepository notificationTrackerRepository, UserRepository userRepository, SensorDataRepository sensorDataRepository,@Lazy NotificationStreamController streamController) {
         this.notificationTrackerRepository = notificationTrackerRepository;
         this.userRepository = userRepository;
         this.sensorDataRepository = sensorDataRepository;
+        this.streamController = streamController;
     }
 
     public NotificationTracker createNotification(int userId) {
-        // Fetch user from the repository
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // Get the average temperature
-        LocalDateTime time = LocalDateTime.now().minusMinutes(10);
-        Double averageTemperature = sensorDataRepository.findAverageTemperature(time);
+        Double averageTemperature = sensorDataRepository.findAverageTemperature(LocalDateTime.now().minusMinutes(10));
 
-        // Create and save the notification
         NotificationTracker notification = new NotificationTracker(user, LocalDateTime.now(), averageTemperature);
-        notification.setMessage("KDG Alert. Stove is unattended and average temperature value is: " + averageTemperature);
+        notification.setMessage("KDG Alert! Temperature: " + averageTemperature);
 
-        return notificationTrackerRepository.save(notification);
+        NotificationTracker savedNotification = notificationTrackerRepository.save(notification);
+
+        // Trigger broadcast
+        streamController.broadcastNotification(savedNotification);
+
+        return savedNotification;
     }
 
     public Map<String, Integer> getNotificationsPerHour(int userId, LocalDate selectedDate) {
@@ -97,5 +105,24 @@ public class NotificationTrackerService {
         // Fetch the latest notifications for the user with pagination
         return notificationTrackerRepository.findLatestNotificationsByUser(user, pageable);
     }
+
+    public List<NotificationTracker> getUnseenNotificationsByUser(int userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+        LocalDateTime timeThreshold = LocalDateTime.now().minusMinutes(10);
+        return notificationTrackerRepository.findUnseenNotificationsByUser(user, timeThreshold);
+    }
+
+
+
+    @Transactional
+    public void markNotificationsAsSeen(List<Long> notificationIds) {
+        List<NotificationTracker> notifications = notificationTrackerRepository.findAllById(notificationIds);
+        for (NotificationTracker notification : notifications) {
+            notification.setSeen(true); // Mark as seen
+        }
+        notificationTrackerRepository.saveAll(notifications); // Persist changes
+    }
+
 
 }

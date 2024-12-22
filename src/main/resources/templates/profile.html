@@ -6,6 +6,7 @@
 </head>
 <body>
 <div th:insert="fragments/navbar.html"></div>
+<div th:insert="fragments/notifications.html"></div>
 <div class="container mt-5 min-vh-100">
   <div class="row">
     <div class="col-md-4">
@@ -36,11 +37,11 @@
         <div class="card-body">
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center"
-                th:each="notification : ${notifications}">
+                th:each="notifications : ${notifications}">
               <div>
-                <h6 class="fw-bold" th:text="${notification.message}"></h6>
-                <small class="text-muted" th:text="'Notification ID: ' + ${notification.notificationId}"></small>
-                <small class="text-muted" th:text="${notification.sentAt}">[Timestamp]</small>
+                <h6 class="fw-bold" th:text="${notifications.message}"></h6>
+                <small class="text-muted" th:text="'Notification ID: ' + ${notifications.notificationId}"></small>
+                <small class="text-muted" th:text="${notifications.sentAt}">[Timestamp]</small>
               </div>
             </li>
           </ul>

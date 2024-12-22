@@ -1,6 +1,7 @@
 package projectKDG.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -16,6 +17,14 @@ import java.util.List;
 public interface NotificationTrackerRepository extends JpaRepository<NotificationTracker, Long> {
     @Query("SELECT n FROM NotificationTracker n WHERE n.user = :user ORDER BY n.sentAt DESC")
     List<NotificationTracker> findLatestNotificationsByUser(@Param("user") User user, Pageable pageable);
+
+    @Query("SELECT n FROM NotificationTracker n WHERE n.user = :user AND n.seen = false AND n.sentAt >= :timeThreshold ORDER BY n.sentAt DESC LIMIT 1")
+    List<NotificationTracker> findUnseenNotificationsByUser(@Param("user") User user, @Param("timeThreshold")LocalDateTime timeThreshold);
+
+    @Modifying
+    @Query("UPDATE NotificationTracker n SET n.seen = true WHERE n.notificationId IN :ids")
+    void markAsSeen(@Param("ids") List<Long> ids);
+
 
     @Query("""
             SELECT EXTRACT(HOUR FROM nt.sentAt) AS hour, COUNT(nt) AS count
