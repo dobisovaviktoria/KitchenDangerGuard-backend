@@ -1,26 +1,9 @@
 POST http://localhost:8080/sensor-data HTTP/1.1
 Content-Type: application/json
 
-//{
-//  "motionStatus": false,
-//  "temperatureValue": 37,
-//  "timestamp": "",
-//  "deviceId": 0
-//}
-
 {
-  "id": 1508,
   "motionStatus": false,
-  "temperatureValue": 130,
-  "timestamp": "2024-12-09T15:53:25.200152",
-  "arduinoDevice": {
-    "arduinoDeviceId": 1,
-    "user": {
-      "userName": "test",
-      "age": "2024-12-08",
-      "password": "test",
-      "email": "test@test.com",
-      "phone": "1234567890"
-    }
-  }
+  "temperatureValue": 24,
+  "timestamp": "",
+  "deviceId": 0
 }
