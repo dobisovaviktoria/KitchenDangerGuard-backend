@@ -63,7 +63,7 @@ Kitchen Danger Guard (KDG) is an innovative solution designed to monitor kitchen
 
 ### **2. Clone the Project**
 ```bash
-git clone <https://gitlab.com/kdg-ti/integration-2.1/24-25/team-7/Kitchen-Danger_GuardZ>
+git clone <https://github.com/dobisovaviktoria/KitchenDangerGuard-backend>
 cd <project-directory>
 ```
 
@@ -206,11 +206,3 @@ cd <project-directory>
 3. **Flask Service Fails to Respond**:
    - Verify PostgreSQL database connectivity.
    - Ensure the Flask service is running and accessible.
-
----
-## **Contact**
-
-For questions or assistance, contact **Team 7**:
-- **Email**: [kitchendangerguard@gmail.com](mailto:kitchendangerguard@gmail.com)
-- **GitHub**: [Team 7 Repository](<https://gitlab.com/kdg-ti/integration-2.1/24-25/team-7/Kitchen-Danger_Guard>)
----
